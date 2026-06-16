@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学生岗位实习行动指南</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:#f0f4f8;color:#2d3748;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+.top{background:linear-gradient(135deg,#1e3a5f,#2c5282);color:#fff;padding:28px 24px;border-radius:12px 12px 0 0;text-align:center}
+.top h1{font-size:24px;margin-bottom:4px}
+.top p{font-size:13px;opacity:.85}
+.main{background:#fff;padding:24px 20px;border-radius:0 0 12px 12px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+
+/* 实习类型 Tab */
+.typetabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.typetabs input{display:none}
+.typetabs label{flex:1;min-width:140px;padding:12px 16px;text-align:center;border-radius:8px;cursor:pointer;font-weight:600;font-size:14px;border:2px solid #e2e8f0;background:#fff;color:#4a5568;transition:all .2s}
+.typetabs input:checked+label{border-color:transparent;color:#fff}
+.typetabs label[for=t1]{border-color:#3182ce;color:#3182ce}
+.typetabs input#t1:checked+label{background:#3182ce;color:#fff}
+.typetabs label[for=t2]{border-color:#d69e2e;color:#d69e2e}
+.typetabs input#t2:checked+label{background:#d69e2e;color:#fff}
+.typetabs label[for=t3]{border-color:#e53e3e;color:#e53e3e}
+.typetabs input#t3:checked+label{background:#e53e3e;color:#fff}
+
+.typepanel{display:none;animation:fade .3s}
+#t1:checked~.typepanels #tp1,
+#t2:checked~.typepanels #tp2,
+#t3:checked~.typepanels #tp3{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.typepanel h3{font-size:18px;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0}
+.typepanel .card{background:#f7fafc;border-left:4px solid;padding:12px 16px;border-radius:6px;margin-bottom:12px}
+.typepanel .card.blue{border-color:#3182ce}
+.typepanel .card.yellow{border-color:#d69e2e}
+.typepanel .card.red{border-color:#e53e3e}
+.typepanel .card h4{font-size:14px;margin-bottom:4px}
+.typepanel .card p,.typepanel .card li{font-size:13px;color:#4a5568}
+.typepanel .card ul{padding-left:18px}
+.typepanel .card li{margin-bottom:3px}
+
+/* 专业按钮 */
+.majorsection{margin-top:24px;padding-top:20px;border-top:2px solid #e2e8f0}
+.majorsection h2{font-size:20px;margin-bottom:12px;color:#1e3a5f}
+.majorbtns{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.majorbtns input{display:none}
+.majorbtns label{flex:1;min-width:100px;padding:8px 12px;text-align:center;border-radius:20px;cursor:pointer;font-size:13px;font-weight:500;background:#edf2f7;color:#4a5568;transition:all .2s;border:1px solid #e2e8f0}
+.majorbtns input:checked+label{background:#2c5282;color:#fff;border-color:#2c5282}
+
+.majorpanel{display:none;background:#f7fafc;border-radius:8px;padding:16px;animation:fade .3s}
+#m1:checked~.majorpanels #mp1,
+#m2:checked~.majorpanels #mp2,
+#m3:checked~.majorpanels #mp3,
+#m4:checked~.majorpanels #mp4,
+#m5:checked~.majorpanels #mp5{display:block}
+
+.majorpanel table{width:100%;border-collapse:collapse;font-size:13px}
+.majorpanel td{padding:8px 10px;border-bottom:1px solid #e2e8f0;vertical-align:top}
+.majorpanel td:first-child{font-weight:600;color:#2c5282;white-space:nowrap;width:26%}
+
+/* 通用须知 */
+.notice{margin-top:20px;padding:14px 16px;background:#fff5f5;border-left:4px solid #fc8181;border-radius:6px;font-size:13px}
+.notice strong{color:#c53030}
+.notice ul{padding-left:18px;margin-top:6px}
+.notice li{margin-bottom:3px}
+
+.foot{text-align:center;padding:16px;font-size:11px;color:#a0aec0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+<h1>📋 学生岗位实习行动指南</h1>
+<p>化学工程系 · 2024级 · 2026年9月1日 — 2027年6月25日</p>
+</div>
+
+<div class="main">
+
+<!-- ====== 实习类型选择 ====== -->
+<h2 style="font-size:20px;color:#1e3a5f;margin-bottom:12px;">一、选择你的实习类型</h2>
+
+<input type="radio" name="type" id="t1" checked>
+<input type="radio" name="type" id="t2">
+<input type="radio" name="type" id="t3">
+<div class="typetabs">
+  <label for="t1">🏫 区内集中实习</label>
+  <label for="t2">🔍 区内自主实习</label>
+  <label for="t3">✈️ 跨省实习</label>
+</div>
+
+<div class="typepanels">
+
+<!-- 区内集中 -->
+<div class="typepanel" id="tp1">
+<h3>区内集中实习</h3>
+<p style="font-size:13px;color:#718096;margin-bottom:12px;">由系部统一安排实习单位，统一组织管理。实习开始前10日签订三方协议，按市域分开提交材料。</p>
+<div class="card blue">
+<h4>你需要完成的材料</h4>
+<ul>
+<li><strong>实习申请</strong> — i鄂院-智慧实训安全平台-岗位实习（需要先提交企业实习申请，审批后方可进行后续操作）</li>
+<li><strong>附件3：三方协议</strong> — 学校统一组织签订，一式三份（甲、乙、丙三方各执一份），逐空填写、手写签署、加盖单位公章，不得删减修改</li>
+<li><strong>三方协议扫描件</strong> — 签订后提交</li>
+<li><strong>附件5、6：岗位实习方案及任务书</strong> — 各专业对应方案（见下方专业要求），每人1份，作为实习培训内容</li>
+<li><strong>实习周志</strong> — 每周1篇，内容包含岗位操作、工艺学习、问题反思、安全心得（前半年18篇，后半年16篇）</li>
+<li><strong>实习总结报告</strong> — 实习结束时提交（各专业字数要求不同，见下方）</li>
+<li><strong>企业实习鉴定表</strong> — 企业指导师傅/企业负责人填写评价并加盖公章</li>
+<li><strong>岗位实习证明</strong> — 企业指导师傅/企业负责人填写评价并加盖公章（每半年提交一次）</li>
+</ul>
+</div>
+</div>
+
+<!-- 区内自主 -->
+<div class="typepanel" id="tp2">
+<h3>区内自主实习</h3>
+<p style="font-size:13px;color:#718096;margin-bottom:12px;">自行选择实习单位，需经审核备案后方可实习。自行选择的实习单位需经审核、备案。</p>
+<div class="card yellow">
+<h4>你需要完成的材料</h4>
+<ul>
+<li><strong>实习申请</strong> — i鄂院-智慧实训安全平台-岗位实习（需要先提交企业实习申请，审批后方可进行后续操作）</li>
+<li><strong>附件7：学生自选单位岗位实习审批表</strong> — 一式四份（本人、企业、二级学院、教务处各一份），实习开始前提交审批</li>
+<li><strong>附件8：自主实习家长知情书</strong> — 家长（法定监护人）手写签署，声明知情并自行负责子女实习期间的安全问题，如发生任何意外或事故，自行承担全部责任</li>
+<li><strong>附件3：三方协议</strong> — 签订后提交，一式三份，逐空填写、手写签署、加盖单位公章</li>
+<li><strong>三方协议扫描件</strong> — 签订后提交</li>
+<li><strong>附件5、6：岗位实习方案及任务书</strong> — 各专业对应，每人1份</li>
+<li><strong>实习周志</strong> — 每周1篇，内容包含岗位操作、工艺学习、问题反思、安全心得（前半年18篇，后半年16篇）</li>
+<li><strong>实习总结报告</strong> — 实习结束时提交（各专业字数要求见下方）</li>
+<li><strong>企业实习鉴定表</strong> — 企业指导师傅/企业负责人填写评价并加盖公章</li>
+<li><strong>附件9：单独居住家长知情书</strong> — 如不在实习单位统一安排的宿舍住宿则需提交，家长签署后自行负责在外居住期间的安全（包括交通安全）</li>
+<li><strong>岗位实习证明</strong> — 企业指导师傅/企业负责人填写评价并加盖公章（每半年提交一次）</li>
+</ul>
+</div>
+<div style="font-size:12px;color:#e53e3e;margin-top:8px;">⚠ 自主实习学生必须保证有企业人员向班主任"日报告"实习情况。需向系里提供用人单位的接收函及岗位实习证明，并办理相关手续方可离校。</div>
+</div>
+
+<!-- 跨省 -->
+<div class="typepanel" id="tp3">
+<h3>跨省实习</h3>
+<p style="font-size:13px;color:#718096;margin-bottom:12px;">实习单位在内蒙古自治区以外的省份。需于五月底前提出申请，经院长办公会审议通过后方可组织签订三方协议。备案材料于实习开始前15日提交，至少提前10日向市、省两级主管部门备案。</p>
+<div class="card red">
+<h4>你需要完成的材料</h4>
+<ul>
+<li><strong>实习申请</strong> — i鄂院-智慧实训安全平台-岗位实习（需要先提交企业实习申请，审批后方可进行后续操作）</li>
+<li><strong>附件2：职业学校学生跨省实习备案表</strong> — "一省一表"，分省填报。认真填写表中每一项信息，多专业/多单位/多时间需标清匹配关系。各级部门需给出备案意见并盖章</li>
+<li><strong>附件4：跨省实习保单明细</strong> — 提供为实习学生和校方指导教师购买的实习责任保险、意外伤害险等保单原件和明细，加盖学校公章，保险有效期须覆盖实习全过程。如有补购保险安排需提供相关说明并盖章</li>
+<li><strong>附件5：学生跨省实习情况统计表</strong> — "一省一表"，以"内蒙古赴X省实习备案X人"命名。除广东、河北外用此表；赴广东用附件6，赴河北用附件7</li>
+<li><strong>附件3：三方协议</strong> — 一式三份，逐空填写、手写签署、加盖单位公章</li>
+<li><strong>三方协议扫描件</strong> — 签订后提交</li>
+<li><strong>家长知情同意书</strong> — 作为三方协议附件，家长（法定监护人）签署</li>
+<li><strong>附件5、6：岗位实习方案及任务书</strong> — 各专业对应，每人1份</li>
+<li><strong>实习周志</strong> — 每周1篇，内容包含岗位操作、工艺学习、问题反思、安全心得（前半年18篇，后半年16篇）</li>
+<li><strong>实习总结报告</strong> — 实习结束时提交</li>
+<li><strong>企业实习鉴定表</strong> — 企业指导师傅/企业负责人填写评价并加盖公章</li>
+<li><strong>岗位实习证明</strong> — 企业指导师傅/企业负责人填写评价并加盖公章（每半年提交一次）</li>
+</ul>
+</div>
+<div style="font-size:12px;color:#e53e3e;margin-top:8px;">⚠ 关键时间：五月底前申请 → 审议通过后签协议 → 实习开始前15日备案 → 至少提前10日报备。<br>⚠ 备案表、三方协议、统计表、家长知情同意书上的实习起止时间必须一致，精确到日。实习单位名称须与企业公章一致。如有备案修正要求，5日内补正上报完毕。</div>
+</div>
+
+</div><!-- /typepanels -->
+
+<!-- ====== 专业要求 ====== -->
+<div class="majorsection">
+<h2>二、选择你的专业</h2>
+
+<input type="radio" name="major" id="m1" checked>
+<input type="radio" name="major" id="m2">
+<input type="radio" name="major" id="m3">
+<input type="radio" name="major" id="m4">
+<input type="radio" name="major" id="m5">
+<div class="majorbtns">
+  <label for="m1">🔬 分析检验技术</label>
+  <label for="m2">🛡️ 化工安全技术</label>
+  <label for="m3">⚗️ 应用化工技术</label>
+  <label for="m4">🏭 煤化工技术</label>
+  <label for="m5">♻️ 煤炭清洁利用技术</label>
+</div>
+
+<div class="majorpanels">
+
+<!-- 分析检验技术 -->
+<div class="majorpanel" id="mp1">
+<table>
+<tr><td>对应文件</td><td>附件5（岗位实习方案）、附件6（岗位实习任务书）</td></tr>
+<tr><td>实习标准依据</td><td>教育部《分析检验技术专业岗位实习标准》</td></tr>
+<tr><td>实习岗位方向</td><td>检验检测相关岗位。常用仪器：紫外可见分光光度计、气相色谱仪、液相色谱仪、原子吸收分光光度计、天平、酸度计等。需掌握基本操作、日常维护与简单故障排查。</td></tr>
+<tr><td>实习周志</td><td>每周1篇，内容包含岗位操作、工艺学习、问题反思、安全心得。</td></tr>
+<tr><td>实习总结报告</td><td>不少于<strong>3000字</strong>。包含：实习企业概况、实习操作技能、岗位操作内容、技能收获、行业认知及职业规划。</td></tr>
+<tr><td>时间安排</td><td>第1-2周入职熟悉 → 第3-4周基础实操 → 第5-8周常规检测 → 第9-12周仪器操作 → 第13-16周综合工作 → 第17-18周总结提升</td></tr>
+<tr><td>考核方式</td><td>安全考核30分 ＋ 实操考核40分 ＋ 材料考核20分 ＋ 考勤素养10分。安全考核出现违规操作直接不及格。企业师傅对实操打分。</td></tr>
+</table>
+</div>
+
+<!-- 化工安全技术 -->
+<div class="majorpanel" id="mp2">
+<table>
+<tr><td>对应文件</td><td>附件5（岗位实习方案）、附件6（岗位实习任务书）</td></tr>
+<tr><td>实习标准依据</td><td>教育部《高等职业学校化工技术类专业岗位实习标准》《安全技术与管理专业岗位实习标准》</td></tr>
+<tr><td>实习岗位方向</td><td>化工操作岗、分析检验岗、各类企业安全管理岗。</td></tr>
+<tr><td>实习任务</td><td>①了解企业文化和管理制度；②熟悉安全生产规章制度、操作规程和应急预案，完成三级安全教育；③学习实习车间原材料及产品的性质、储运方式、反应原理、工艺流程、工艺参数；④掌握危险化学品泄漏、火灾、爆炸等事故的应急处置方法；⑤学习岗位操作规程和工艺流程图；⑥学习安全生产法律法规，应用危险源辨识方法进行安全风险排查和隐患记录；⑦学习原料、中间品、产品及水质相关分析检测方法。</td></tr>
+<tr><td>实习周志</td><td>每周按时提交1篇岗位实习周志。</td></tr>
+<tr><td>实习总结报告</td><td>实习结束时提交总结报告一篇。另需提交实习证明1份、实习鉴定表1份（企业审核评价，签字盖章）。</td></tr>
+<tr><td>时间安排</td><td>第三学年第五、第六学期。2026年9月1日 — 2027年6月25日。</td></tr>
+<tr><td>考核方式</td><td>企业评定（实习过程表现）50% ＋ 周志（每周1篇）10% ＋ 学校指导老师评价20% ＋ 实习报告20%</td></tr>
+</table>
+</div>
+
+<!-- 应用化工技术 -->
+<div class="majorpanel" id="mp3">
+<table>
+<tr><td>对应文件</td><td>附件5（岗位实习方案）、附件6（岗位实习任务书）</td></tr>
+<tr><td>实习标准依据</td><td>教育部《应用化工技术专业岗位实习标准》</td></tr>
+<tr><td>实习岗位方向</td><td>化工生产相关岗位。掌握化工单元操作、工艺流程、常用设备基础理论，能识别化工设备、仪表，读懂工艺图纸与操作规程。熟悉化工原料、中间体、成品基本理化性质。</td></tr>
+<tr><td>实习周志</td><td>每周实习周记，总结本周技能收获、知识感悟、岗位思考，共计不少于规定篇数。</td></tr>
+<tr><td>实习总结报告</td><td>不少于<strong>1500字</strong>。包含：实习概况、岗位介绍、工艺流程、实操内容、问题分析、心得体会、职业规划，可附带工艺简图、合理化建议等。</td></tr>
+<tr><td>时间安排</td><td>大三学年第五、第六学期，共计<strong>34周</strong>。</td></tr>
+<tr><td>考核方式</td><td>岗位实操50%（企业师傅评价）＋ 出勤纪律20%（校内指导教师评价）＋ 实习材料30%（周记10%＋报告20%）。等级评定：优秀≥90、良好≥76、合格≥60、不合格＜60。如有技术改进或革新等可作为加分项，需有证明材料，最高加20分。抄袭、空缺酌情扣分。</td></tr>
+</table>
+</div>
+
+<!-- 煤化工技术 -->
+<div class="majorpanel" id="mp4">
+<table>
+<tr><td>对应文件</td><td>附件5（岗位实习方案）、附件6（岗位实习任务书）</td></tr>
+<tr><td>实习标准依据</td><td>教育部《煤化工技术专业岗位实习标准》</td></tr>
+<tr><td>实习岗位方向</td><td>煤气化、气体净化、煤制合成、煤制燃料、煤制化学品等全流程生产岗位，覆盖内操、外操在岗作业人员。<br>外操岗：生产现场巡回检查、设备启停状态确认、手动阀门操作、现场物料采样、机泵及管线日常维护配合、跑冒滴漏排查、现场突发情况应急处置等。<br>内操岗：DCS中控系统实时监控、工艺参数调整、安全联锁管理、生产负荷调控、下达岗位操作指令、研判工艺异常工况等。</td></tr>
+<tr><td>实习任务</td><td>安全教育任务（三级安全培训、应急演练、安全学习总结）、工艺学习任务（每周整理工段工艺笔记）、现场实操任务（定时巡检、数据记录、设备润滑、物料取样等辅助作业）、文档整理任务（运行日志、交接班记录、实习周记、月度小结）、合规纪律任务（保密规定、禁烟、动火作业等现场管理规定）。</td></tr>
+<tr><td>实习周志</td><td>每周1篇，内容包含岗位操作、工艺学习、问题反思、安全心得。另需按月整理月度实习小结。</td></tr>
+<tr><td>实习总结报告</td><td>不少于<strong>3000字</strong>。包含：实习企业概况、实习工段工艺流程、岗位操作内容、技能收获、行业认知及职业规划。</td></tr>
+<tr><td>时间安排</td><td>第1周安全集训 → 第2-5周岗位认知 → 第6-34周岗位实习（全程在师傅监护下开展）。</td></tr>
+<tr><td>考核方式</td><td>安全考核30分 ＋ 实操考核40分（企业师傅打分，独立完成巡检记录、设备点检为达标）＋ 材料考核20分 ＋ 考勤素养10分。违规操作安全考核直接判为不及格。</td></tr>
+</table>
+</div>
+
+<!-- 煤炭清洁利用技术 -->
+<div class="majorpanel" id="mp5">
+<table>
+<tr><td>对应文件</td><td>附件5（岗位实习方案）、附件6（岗位实习任务书）</td></tr>
+<tr><td>实习标准依据</td><td>教育部《煤炭清洁利用技术专业岗位实习标准》</td></tr>
+<tr><td>实习岗位方向</td><td>煤炭洗选、煤气化、煤气净化、合成精制及其他煤炭深加工生产岗位，覆盖装置全部内操、外操在岗作业人员。<br>外操岗：现场巡检、设备启停确认、阀门手动操作、现场采样、机泵维护配合、管线查漏、现场应急处置等。<br>内操岗：DCS中控监视、工艺参数调节、联锁管控、生产负荷调整、操作指令下达、工艺异常研判等。</td></tr>
+<tr><td>实习任务</td><td>安全教育任务（三级安全培训、应急演练并提交学习总结）、工艺学习任务（每周梳理1个工段工艺笔记）、现场实操任务（定时巡检、记录装置温度压力流量等数据、设备润滑、滤网清理、取样等辅助作业）、文档整理任务（运行日志、交接班记录、实习周记、月度小结）、合规任务（保密制度、禁烟、动火受限等现场管理规定）。</td></tr>
+<tr><td>实习周志</td><td>每周1篇，内容包含岗位操作、工艺学习、问题反思、安全心得。另需按月整理月度实习小结。</td></tr>
+<tr><td>实习总结报告</td><td>不少于<strong>3000字</strong>。包含：实习企业概况、实习工段工艺流程、岗位操作内容、技能收获、行业认知及职业规划。</td></tr>
+<tr><td>时间安排</td><td>第1周安全集训 → 第2-5周岗位认知 → 第6-18周岗位实习（全程在师傅监护下开展）。</td></tr>
+<tr><td>考核方式</td><td>安全考核30分 ＋ 实操考核40分（企业师傅打分，独立完成巡检记录、设备点检为达标）＋ 材料考核20分 ＋ 考勤素养10分。违规操作安全考核直接判为不及格。</td></tr>
+</table>
+</div>
+
+</div><!-- /majorpanels -->
+</div><!-- /majorsection -->
+
+<!-- 通用提醒 -->
+<div class="notice">
+<strong>⚠ 重要提醒</strong>
+<ul>
+<li>所有学生实习前必须签订<strong>附件3：三方协议</strong>，未签协议不予认定实习。签订后按市域（区内）/省域（跨省）分开提交三方协议扫描件。</li>
+<li>实习期间在<strong>"i鄂院"</strong>上打卡。</li>
+<li><strong>附件11：学生实习管理制度</strong>和<strong>附件12：学生实习安全管理规定</strong>为实习期间需遵守的管理制度（校企共同制定，需企业盖章）。</li>
+<li>严格通过企业三级安全教育（厂级、车间级、班组级）方可上岗。遵守操作规程，杜绝"三违"行为（违章操作、违章作业、违反劳动纪律）。</li>
+<li>实习期间不得擅自离岗、串岗，未经校企双方同意不得擅自终止实习。中途擅自调换实习单位，实习成绩为零分。请假须按校企流程审批。</li>
+<li>防爆区域严禁携带手机。不得乘坐摩托车、高速电瓶车。必须在实习单位指定的地方统一住宿。</li>
+<li>经常向班主任如实报告实习情况，不得谎报。转岗或新增工作内容要先向班主任报告。</li>
+<li>实习材料包括：三方协议、实习方案、学生实习报告、实习考核结果、实习日志（周志）、实习检查记录、实习总结、有关佐证材料。</li>
+</ul>
+</div>
+
+</div><!-- /main -->
+<div class="foot">本指南内容均来源于岗位实习相关文件</div>
+</div>
+</body>
+</html>

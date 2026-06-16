@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>鄂尔多斯职业学院学生资助管理制度-化工</title>
+<style>
+:root{
+  --p:#1a6fb5; --pl:#e8f2fa; --r:#d32f2f; --rl:#fdecea;
+  --y:#e6a817; --yl:#fef9e7; --g:#2e7d32; --gl:#e8f5e9;
+  --gy:#6b7280; --gyl:#f3f4f6; --bg:#f0f2f5; --w:#fff; --t:#1f2937; --tl:#6b7280;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font:15px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+  background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;
+}
+
+.hd{
+  background:linear-gradient(135deg,#1a5fa0,#1a6fb5,#2080c8);color:#fff;
+  padding:24px 16px 20px;text-align:center;
+}
+.hd h1{font-size:21px;font-weight:700;letter-spacing:.5px}
+.hd p{font-size:13px;opacity:.85;margin-top:4px}
+.hd .badges{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.hd .badges span{
+  background:rgba(255,255,255,.16);padding:3px 12px;border-radius:16px;
+  font-size:11px;border:1px solid rgba(255,255,255,.2);
+}
+
+.w{max-width:800px;margin:0 auto;padding:0 12px 36px}
+
+/* ── Tabs ── */
+.tabs{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:5px;
+  margin:14px 0 10px;position:sticky;top:8px;z-index:10;
+}
+@media(min-width:500px){.tabs{grid-template-columns:repeat(5,1fr)}}
+.tab{
+  padding:10px 5px;border-radius:10px;border:none;background:var(--w);
+  font-size:11px;font-weight:600;color:var(--gy);cursor:pointer;
+  text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:all .18s;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+}
+.tab .ico{font-size:17px}
+.tab.on{background:var(--p);color:#fff;box-shadow:0 4px 12px rgba(26,111,181,.3)}
+.tab:active{transform:scale(.96)}
+
+/* ── Panels ── */
+.panel{display:none}
+.panel.on{display:block}
+
+/* ── Cards ── */
+.sec{margin-bottom:14px}
+.sec-ttl{font-size:17px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.sec-ttl .n{font-size:11px;background:var(--pl);color:var(--p);padding:2px 9px;border-radius:10px;font-weight:600}
+
+.card{
+  background:var(--w);border-radius:12px;padding:14px 15px;margin-bottom:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.chd{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+.cttl{font-size:15px;font-weight:700;flex:1}
+.tags{display:flex;gap:5px;flex-shrink:0}
+.tag{font-size:11px;padding:3px 9px;border-radius:9px;font-weight:600;white-space:nowrap}
+
+.info{font-size:13px;color:var(--tl);margin:3px 0}
+.info b{color:var(--t)}
+
+/* ── Timeline steps ── */
+.steps{margin:8px 0 0 4px;padding-left:18px;border-left:2px dashed #dde1e6}
+.step{position:relative;padding:8px 0 8px 18px}
+.step::before{
+  content:'';position:absolute;left:-25px;top:12px;width:10px;height:10px;
+  border-radius:50%;background:var(--p);border:2px solid #fff;
+  box-shadow:0 0 0 2px var(--p);
+}
+.step .sn{font-size:11px;color:var(--p);font-weight:700}
+.step .st{font-size:13px;font-weight:600}
+
+/* ── Alert ── */
+.alt{padding:10px 14px;border-radius:8px;font-size:12px;margin:8px 0;line-height:1.6}
+.alt-r{background:var(--rl);color:#a71d2a}
+.alt-y{background:var(--yl);color:#856404}
+.alt-g{background:var(--gl);color:#1b5e20}
+.alt-b{background:var(--pl);color:var(--p)}
+
+/* ── Table ── */
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#f8fafb;padding:7px 8px;text-align:left;font-weight:700;font-size:11px;color:var(--gy);border-bottom:2px solid #e5e7eb}
+.tbl td{padding:6px 8px;border-bottom:1px solid #eee;vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+
+/* ── Collapse ── */
+.col-head{
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;user-select:none;font-weight:600;font-size:14px;margin-top:6px;
+}
+.col-head::after{content:'▾';font-size:12px;color:var(--gy);transition:transform .2s}
+.col-head.open::after{transform:rotate(180deg)}
+.col-body{display:none;margin-top:6px}
+.col-body.show{display:block}
+
+/* ── Sub nav ── */
+.subnav{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.subnav a{
+  font-size:11px;padding:4px 10px;border-radius:12px;background:var(--w);
+  color:var(--p);text-decoration:none;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+.subnav a:active{background:var(--p);color:#fff}
+
+.ft{text-align:center;padding:20px 12px;font-size:11px;color:var(--gy);margin-top:10px}
+
+@media(max-width:420px){
+  .hd h1{font-size:18px}
+  .card{padding:12px}
+  .cttl{font-size:14px}
+  .sec-ttl{font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <h1>📋 鄂尔多斯职业学院<br>学生资助管理制度</h1>
+  <p>化学工程系</p>
+  <div class="badges">
+    <span>🎓 奖学金</span><span>🤝 助学金</span><span>🆘 困难补助</span>
+    <span>📝 困难认定</span><span>💼 资助育人</span>
+  </div>
+</div>
+
+<div class="w">
+
+<!-- ═══ TABS ═══ -->
+<div class="tabs">
+  <button class="tab on" data-p="p-all"><span class="ico">📑</span>全部总览</button>
+  <button class="tab" data-p="p-jxj"><span class="ico">🎓</span>奖学金</button>
+  <button class="tab" data-p="p-zxj"><span class="ico">🤝</span>助学金</button>
+  <button class="tab" data-p="p-bz"><span class="ico">🆘</span>困难补助</button>
+  <button class="tab" data-p="p-rd"><span class="ico">📝</span>困难认定</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL: 全部总览
+     ══════════════════════════════════════ -->
+<div class="panel on" id="p-all">
+
+  <!-- 一、奖学金类 -->
+  <div class="sec">
+    <div class="sec-ttl">🎓 奖学金类 <span class="n">6 项</span></div>
+    <div class="subnav">
+      <a href="#" onclick="switchTab('p-jxj')">查看详情 →</a>
+    </div>
+
+    <table class="tbl">
+      <thead><tr><th>项目</th><th>金额（元/年）</th><th>对象</th><th>成绩要求</th><th>时间</th></tr></thead>
+      <tbody>
+        <tr><td>国家奖学金</td><td>10000</td><td>二年级以上品学兼优</td><td>排名前10%（或前30%+突出表现）</td><td>秋季学期</td></tr>
+        <tr><td>内蒙古自治区奖学金</td><td>6000</td><td>二年级以上品学兼优</td><td>排名前20%（或前30%+突出表现）</td><td>秋季学期</td></tr>
+        <tr><td>乌兰夫奖学金</td><td>10000</td><td>二年级以上品学兼优</td><td>排名前15%</td><td>秋季学期</td></tr>
+        <tr><td>国家励志奖学金</td><td>6000</td><td>二年级以上品学兼优+困难</td><td>排名前30%</td><td>秋季学期</td></tr>
+        <tr><td>自治区励志奖学金</td><td>4000</td><td>二年级以上品学兼优+困难</td><td>排名前40%</td><td>秋季学期</td></tr>
+        <tr><td>红色工匠奖学金</td><td>2000~5000（三等）</td><td>二年级以上</td><td>排名前25%（可顺延至前40%）</td><td>秋季学期，12月表彰</td></tr>
+      </tbody>
+    </table>
+
+    <div class="alt alt-y">💡 <b>兼得规则（文件原文）：</b>国奖/自治区奖学金/乌兰夫奖学金/国励/区励/红色工匠之间原则上不可兼得。但获得奖学金且为困难学生的，可同时申请国家助学金。</div>
+  </div>
+
+  <!-- 二、助学金类 -->
+  <div class="sec">
+    <div class="sec-ttl">🤝 助学金类 <span class="n">1 项</span></div>
+    <table class="tbl">
+      <thead><tr><th>项目</th><th>金额（元/年）</th><th>对象</th><th>关键条件</th><th>发放方式</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>国家助学金</td>
+          <td>一档4500 / 二档3600 / 三档3000<br>（平均3700）</td>
+          <td>全日制在校困难学生</td>
+          <td>经认定为家庭经济困难；<br>不及格科目≤3门</td>
+          <td>秋季学期12月31日前发5个月；<br>春季学期3-7月按月发放</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alt alt-r">⚠️ <b>异动管理（文件原文）：</b>因应征入伍、退学、转学、休学、开除、死亡等原因不能继续在校，或因违纪受记过及以上处分，应<strong>及时取消受助资格，停止发放</strong>。超过基本修业年限不再享受。</div>
+  </div>
+
+  <!-- 三、特殊困难补助 -->
+  <div class="sec">
+    <div class="sec-ttl">🆘 特殊困难补助 <span class="n">1 项</span></div>
+    <table class="tbl">
+      <thead><tr><th>对象</th><th>金额（元/学年）</th><th>时间</th></tr></thead>
+      <tbody>
+        <tr><td>烈士子女、社会福利机构收养、事实孤儿</td><td>5000</td><td>11月上旬</td></tr>
+        <tr><td>其他类特殊困难学生</td><td>2000 或 3000（两档）</td><td>11月上旬</td></tr>
+      </tbody>
+    </table>
+    <div class="info" style="margin-top:6px"><b>适用范围：</b>革命烈士或因公牺牲军烈属子女；无经济来源/无法定赡养人/社会福利机构收养/事实孤儿；残疾家庭、城乡低保家庭、脱贫不稳定家庭、边缘易致贫家庭、突发严重困难家庭。</div>
+    <div class="info"><b>前置条件：</b>须先按时缴纳学费，办理报到注册手续后方可申请。</div>
+  </div>
+
+  <!-- 四、困难认定 -->
+  <div class="sec">
+    <div class="sec-ttl">📝 家庭经济困难学生认定 <span class="n">3 等级</span></div>
+    <table class="tbl">
+      <thead><tr><th>等级</th><th>标准</th><th>主要情形</th></tr></thead>
+      <tbody>
+        <tr><td>特别困难</td><td>家庭完全不能提供基本上学费用</td><td>脱贫不稳定/边缘易致贫/低保/突发严重困难/特困供养/孤儿/烈士子女/残疾学生/残疾人子女</td></tr>
+        <tr><td>比较困难</td><td>家庭仅能提供小部分费用</td><td>父母丧失大部分劳动能力且外欠债；供养人口多无稳定来源；收入明显低于当地平均水平且多人就读；因灾因病临时困难</td></tr>
+        <tr><td>一般困难</td><td>家庭尚不能完全提供全部费用</td><td>父母丧失部分劳动能力；收入低于当地平均水平且多人就读；本人或家庭成员患慢性病需长期治疗</td></tr>
+      </tbody>
+    </table>
+    <div class="info" style="margin-top:6px"><b>认定时间：</b>每学年开展一次，于<strong>每年 9 月</strong>进行认定或调整。特殊情况每学期可根据实际情况动态调整。</div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL: 奖学金
+     ══════════════════════════════════════ -->
+<div class="panel" id="p-jxj">
+
+  <!-- ===== 国奖 ===== -->
+  <div class="sec">
+    <div class="sec-ttl">国家奖学金</div>
+    <div class="card">
+      <div class="chd"><div class="cttl">国家奖学金</div><div class="tags"><span class="tag" style="background:var(--rl);color:var(--r)">10000元/年</span></div></div>
+      <div class="info"><b>对象：</b>正式注册的二年级以上（含二年级）品学兼优全日制专科学生</div>
+      <div class="info"><b>名额：</b>根据教育厅分配确定</div>
+      <div class="info"><b>时间：</b>每年秋季学期评审一次，一次性发放</div>
+
+      <div class="col-head open" onclick="toggleCol(this)">📋 申请条件</div>
+      <div class="col-body show">
+        <div class="info"><b>基本条件：</b></div>
+        <div class="info">① 具有中华人民共和国国籍，热爱祖国，拥护中国共产党领导</div>
+        <div class="info">② 遵守宪法和法律法规，遵守学院各项规章制度</div>
+        <div class="info">③ 诚实守信，道德品质优良</div>
+        <div class="info">④ 学习成绩排名和综合素质测评成绩排名<strong>均位于本年级本专业前10%</strong>，且无补考、重修科目</div>
+        <div class="info" style="margin-top:6px"><b>成绩排名超出前10%但均位于前30%的</b>，须在道德风尚、学术研究、学科竞赛、创新发明、社会实践、社会工作、体育竞赛、文艺比赛等某一方面表现特别优秀（文件列有7种具体情形）</div>
+
+        <div class="alt alt-r" style="margin-top:8px"><b>不得参评情形：</b>违反国家法律法规；违反校规校纪受处分；意识形态不当言论；课程考核不合格；申请材料不属实。</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 评审程序（5步）</div>
+      <div class="col-body">
+        <div class="steps">
+          <div class="step"><div class="sn">第1步</div><div class="st">学生申请</div>向所在系提出申请，递交《国家奖学金申请审批表》和相关材料</div>
+          <div class="step"><div class="sn">第2步</div><div class="st">班级评议推荐</div>班主任组织民主评议和推荐，在《申请审批表》上签署推荐意见并上报所在系</div>
+          <div class="step"><div class="sn">第3步</div><div class="st">系部审议公示</div>系党政联席会议审议→系内公示<strong>3个工作日</strong>→无异议后报送学生工作部</div>
+          <div class="step"><div class="sn">第4步</div><div class="st">学院评审公示</div>学生工作部复审→学生资助工作领导小组评审→全院公示<strong>5个工作日</strong></div>
+          <div class="step"><div class="sn">第5步</div><div class="st">上报审批备案</div>报内蒙古助学管理中心审批与备案，全国学生资助管理系统同步提交</div>
+        </div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 重要规则</div>
+      <div class="col-body">
+        <div class="info">• 同一学年内，获国奖的困难学生<strong>可同时申请国家助学金</strong>，但不能同时获得其他各类奖学金</div>
+        <div class="info">• 在校期间<strong>只能获得一次</strong>国家奖学金</div>
+        <div class="info">• 颁发国家统一印制的奖励证书，记入学籍档案</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 自治区奖学金 ===== -->
+  <div class="sec">
+    <div class="sec-ttl">内蒙古自治区奖学金</div>
+    <div class="card">
+      <div class="chd"><div class="cttl">内蒙古自治区奖学金</div><div class="tags"><span class="tag" style="background:var(--rl);color:var(--r)">6000元/年</span></div></div>
+      <div class="info"><b>对象：</b>正式注册的二年级以上（含二年级）品学兼优全日制专科学生</div>
+      <div class="info"><b>时间：</b>每年秋季学期评审一次，一次性发放</div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 申请条件</div>
+      <div class="col-body">
+        <div class="info">学习成绩排名和综合素质测评成绩排名<strong>均位于本年级本专业前20%</strong>，且无补考、重修科目。</div>
+        <div class="info">成绩排名超出前20%但均位于前30%的，须在某一方面表现特别优秀（与国奖所列7种情形相同）。</div>
+        <div class="alt alt-r" style="margin-top:6px">不得参评情形与国奖相同（5条）。</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 评审程序</div>
+      <div class="col-body"><div class="info">与国奖评审程序相同（学生申请→班级评议→系部审议公示3天→学院评审公示5天→上报审批）。</div></div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 重要规则</div>
+      <div class="col-body">
+        <div class="info">• 同一学年内，获区奖的困难学生<strong>可同时申请国家助学金</strong>，但不能同时获得其他各类<strong>奖助学金</strong></div>
+        <div class="info">• 颁发教育厅统一印制的奖励证书，记入学籍档案</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 乌兰夫奖学金 ===== -->
+  <div class="sec">
+    <div class="sec-ttl">乌兰夫奖学金</div>
+    <div class="card">
+      <div class="chd"><div class="cttl">乌兰夫奖学金</div><div class="tags"><span class="tag" style="background:var(--rl);color:var(--r)">10000元/年</span></div></div>
+      <div class="info"><b>对象：</b>已注册学籍的二年级以上（含二年级）品学兼优全日制在校生</div>
+      <div class="info"><b>名额：</b>每年评选<strong>15名</strong>，差额评选</div>
+      <div class="info"><b>时间：</b>秋季学期提交名单和材料，秋季学期末表彰</div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 评选条件</div>
+      <div class="col-body">
+        <div class="info">• 理想信念坚定，拥护党的领导，维护民族团结</div>
+        <div class="info">• 道德品质优良，积极参加社会实践、科技创新、志愿服务等活动</div>
+        <div class="info">• 必修课学业平均成绩和综合素质测评排名<strong>均处于本专业本年级前15%</strong></div>
+        <div class="info">• 同等条件优先推荐学术研究、专业竞赛、创新发明等方面表现特别优秀者</div>
+        <div class="alt alt-r" style="margin-top:6px">不得参评情形与国奖相同（5条）。</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 评选程序（差额评选）</div>
+      <div class="col-body">
+        <div class="steps">
+          <div class="step"><div class="sn">第1步</div><div class="st">学生申请</div>提交《乌兰夫奖学金审批表》等材料</div>
+          <div class="step"><div class="sn">第2步</div><div class="st">系部初评</div>确定初步获奖候选人名单，公示无异议后报学生资助管理中心</div>
+          <div class="step"><div class="sn">第3步</div><div class="st">学院复核</div>学生资助管理中心复核，提出建议名单和备选名单</div>
+          <div class="step"><div class="sn">第4步</div><div class="st">差额表决</div>资助工作领导小组暨评选委员会审议，<strong>如有不合适人选则在备选名单中举手表决差额评选</strong></div>
+          <div class="step"><div class="sn">第5步</div><div class="st">全院公示</div>公示期不少于<strong>5个工作日</strong>，无异议后报乌兰夫基金会备案</div>
+        </div>
+      </div>
+
+      <div class="alt alt-y" style="margin-top:8px">💡 在校期间<strong>只能享受一次</strong>该项奖学金，且原则上享受学年不能与其他类奖学金同时获得。学院每年组织获奖学生开展红色教育，参观乌兰夫纪念馆、乌兰夫故居等教育基地。</div>
+    </div>
+  </div>
+
+  <!-- ===== 国励 ===== -->
+  <div class="sec">
+    <div class="sec-ttl">国家励志奖学金</div>
+    <div class="card">
+      <div class="chd"><div class="cttl">国家励志奖学金</div><div class="tags"><span class="tag" style="background:var(--rl);color:var(--r)">6000元/年</span></div></div>
+      <div class="info"><b>对象：</b>二年级以上（含二年级）全日制专科学生中<strong>品学兼优的家庭经济困难学生</strong></div>
+      <div class="info"><b>时间：</b>每年秋季学期评审一次，一次性发放</div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 申请条件</div>
+      <div class="col-body">
+        <div class="info">• 学习成绩排名和综合素质测评成绩排名<strong>均须处于本班级人数的前30%</strong></div>
+        <div class="info">• 参评学年内无不及格科目</div>
+        <div class="info">• 经学生资助工作领导小组审批认定为<strong>家庭经济困难学生</strong>，并录入全国学生资助管理系统</div>
+        <div class="alt alt-r" style="margin-top:6px">不得参评情形与国奖相同（5条）。</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 评审程序（等额评审）</div>
+      <div class="col-body">
+        <div class="steps">
+          <div class="step"><div class="sn">第1步</div><div class="st">学生申请</div>递交《本专科生国家励志奖学金申请审批表》和其他相关材料</div>
+          <div class="step"><div class="sn">第2步</div><div class="st">班级评议推荐</div>班主任组织民主评议和推荐并签署意见</div>
+          <div class="step"><div class="sn">第3步</div><div class="st">系部审议公示</div>系党政联席会议审议→系内公示<strong>3个工作日</strong>→报送学生工作部</div>
+          <div class="step"><div class="sn">第4步</div><div class="st">学院评审公示</div>学生工作部复审→资助工作领导小组评审→院内公示<strong>5个工作日</strong></div>
+          <div class="step"><div class="sn">第5步</div><div class="st">上报审批备案</div>报内蒙古教育厅助学管理中心审批，全国系统同步提交</div>
+        </div>
+      </div>
+
+      <div class="alt alt-y" style="margin-top:8px">💡 同一学年内，可同时申请<strong>国家助学金</strong>，但不能同时申请其他类奖学金。</div>
+    </div>
+  </div>
+
+  <!-- ===== 区励 ===== -->
+  <div class="sec">
+    <div class="sec-ttl">内蒙古自治区励志奖学金</div>
+    <div class="card">
+      <div class="chd"><div class="cttl">内蒙古自治区励志奖学金</div><div class="tags"><span class="tag" style="background:var(--rl);color:var(--r)">4000元/年</span></div></div>
+      <div class="info"><b>对象：</b>二年级以上（含二年级）全日制专科学生中<strong>品学兼优的家庭经济困难学生</strong></div>
+      <div class="info"><b>时间：</b>每年秋季学期评审一次，一次性发放</div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 申请条件</div>
+      <div class="col-body">
+        <div class="info">• 学习成绩排名和综合素质测评成绩排名<strong>均须处于本班级人数的前40%</strong></div>
+        <div class="info">• 参评学年内无不及格科目</div>
+        <div class="info">• 经认定为家庭经济困难学生并录入全国学生资助管理系统</div>
+        <div class="alt alt-r" style="margin-top:6px">不得参评情形与国奖相同（5条）。</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 评审程序（等额评审）</div>
+      <div class="col-body"><div class="info">与国励评审程序相同（学生申请→班级评议→系部审议公示3天→学院评审公示5天→上报审批）。</div></div>
+
+      <div class="alt alt-y" style="margin-top:8px">💡 同一学年内，可同时申请<strong>国家助学金</strong>，但不能同时申请其他类奖学金。</div>
+    </div>
+  </div>
+
+  <!-- ===== 红色工匠 ===== -->
+  <div class="sec">
+    <div class="sec-ttl">"红色工匠"奖学金</div>
+    <div class="card">
+      <div class="chd"><div class="cttl">"红色工匠"奖学金（校级）</div><div class="tags"><span class="tag" style="background:var(--gl);color:var(--g)">校级奖学金</span></div></div>
+      <div class="info"><b>对象：</b>正式注册的全日制专科二年级以上（含二年级）学生</div>
+      <div class="info"><b>时间：</b>每学年秋季学期评选一次，以综合测评结果排序为依据，12月份表彰</div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 等级与金额</div>
+      <div class="col-body">
+        <table class="tbl">
+          <thead><tr><th>等级</th><th>金额范围（元/人/年）</th><th>比例（大二大三总数）</th></tr></thead>
+          <tbody>
+            <tr><td>一等奖</td><td>3500~5000</td><td>0.2%~0.5%</td></tr>
+            <tr><td>二等奖</td><td>2500~3500</td><td>0.3%~0.8%</td></tr>
+            <tr><td>三等奖</td><td>2000~3000</td><td>0.6%~0.9%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 申请条件</div>
+      <div class="col-body">
+        <div class="info">• 评选学年内学习成绩在本专业本年级<strong>前25%</strong>，且没有不及格科目（当前25%不足时可顺延至前40%）</div>
+        <div class="info">• 第二课堂积分每学年达到规定积分</div>
+        <div class="info">• 具有创新精神和较强社会实践能力</div>
+        <div class="alt alt-r" style="margin-top:6px">不得参评情形与国奖相同（5条）。</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 重要规则</div>
+      <div class="col-body">
+        <div class="info">• <strong>等额评选</strong>：发布通知→学生申请→系部初评公示→学生资助管理中心复核→资助工作领导小组审议→全院公示<strong>不少于5个工作日</strong></div>
+        <div class="info">• 同一学年内获得其他类奖学金的<strong>不可以申请</strong>红色工匠奖学金</div>
+        <div class="info">• 获得国家助学金的<strong>可以申请</strong>红色工匠奖学金</div>
+        <div class="info">• 资金来源：学院事业收入、合作企业及其他社会捐赠</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 奖学金横向对比 -->
+  <div class="sec">
+    <div class="sec-ttl">📊 六项奖学金横向对比</div>
+    <table class="tbl">
+      <thead><tr><th>项目</th><th>金额</th><th>成绩排名要求</th><th>须为困难学生</th><th>可兼得助学金</th><th>评选方式</th></tr></thead>
+      <tbody>
+        <tr><td>国奖</td><td>10000</td><td>前10%</td><td>否</td><td>是</td><td>—</td></tr>
+        <tr><td>区奖</td><td>6000</td><td>前20%</td><td>否</td><td>是</td><td>—</td></tr>
+        <tr><td>乌兰夫</td><td>10000</td><td>前15%</td><td>否</td><td>—</td><td>差额评选（15名）</td></tr>
+        <tr><td>国励</td><td>6000</td><td>前30%</td><td><strong>是</strong></td><td>是</td><td>等额评审</td></tr>
+        <tr><td>区励</td><td>4000</td><td>前40%</td><td><strong>是</strong></td><td>是</td><td>等额评审</td></tr>
+        <tr><td>红色工匠</td><td>2000~5000</td><td>前25%（可至前40%）</td><td>否</td><td>是</td><td>等额评选</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL: 助学金
+     ══════════════════════════════════════ -->
+<div class="panel" id="p-zxj">
+
+  <div class="sec">
+    <div class="sec-ttl">国家助学金</div>
+    <div class="card">
+      <div class="chd"><div class="cttl">国家助学金</div><div class="tags"><span class="tag" style="background:var(--rl);color:var(--r)">三档：4500/3600/3000</span></div></div>
+      <div class="info"><b>对象：</b>已注册学籍的全日制专科在校生中的<strong>家庭经济困难学生</strong></div>
+      <div class="info"><b>平均标准：</b>每人每年3700元</div>
+      <div class="info"><b>分档：</b>一档4500元、二档3600元、三档3000元（如遇国家政策调整，以当年政策为准）</div>
+      <div class="info"><b>名额分配：</b>根据上级主管部门分配的名额，学院根据各系在校生人数及困难学生分布情况划分</div>
+
+      <div class="col-head open" onclick="toggleCol(this)">📋 申请条件</div>
+      <div class="col-body show">
+        <div class="info">① 坚持四项基本原则，热爱祖国，拥护中国共产党领导</div>
+        <div class="info">② 遵守宪法和法律法规，遵守学院各项规章制度</div>
+        <div class="info">③ 道德品质优良，诚实守信，生活俭朴</div>
+        <div class="info">④ 积极上进，勤奋学习，刻苦努力</div>
+        <div class="info">⑤ 原则上，上一学年必修课<strong>不及格科目不得多余三门</strong></div>
+        <div class="info">⑥ 经认定为家庭经济困难学生，并<strong>录入全国学生资助管理系统贫困生数据库</strong></div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 评审程序（5步）</div>
+      <div class="col-body">
+        <div class="steps">
+          <div class="step"><div class="sn">第1步</div><div class="st">学生申请</div>符合条件的学生（不含退役士兵学生）向所在系提出申请，递交《国家助学金申请审批表》和其他相关材料</div>
+          <div class="step"><div class="sn">第2步</div><div class="st">班级评议推荐</div>班主任组织民主评议和推荐，在《申请审批表》上签署推荐意见并上报所在系</div>
+          <div class="step"><div class="sn">第3步</div><div class="st">系部综合评议公示</div>系党政联席会议综合评议，确定初审名单并公示<strong>3个工作日</strong>，无异议后报送学生工作部</div>
+          <div class="step"><div class="sn">第4步</div><div class="st">学院评审公示</div>学生工作部复审→学生资助工作领导小组评审→院内公示<strong>5个工作日</strong></div>
+          <div class="step"><div class="sn">第5步</div><div class="st">上报审批备案</div>报内蒙古教育厅助学管理中心审批与备案，全国系统同步提交</div>
+        </div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 发放方式（文件原文）</div>
+      <div class="col-body">
+        <div class="info">• <strong>秋季学期：</strong>于当年<strong>12月31日</strong>前完成5个月资金发放</div>
+        <div class="info">• <strong>春季学期：</strong>按月（3月-7月）发放</div>
+        <div class="info">• 如遇上级文件对发放时间、发放频次有新规定，按上级文件执行</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 异动管理（停发情形）</div>
+      <div class="col-body">
+        <div class="alt alt-r">
+          <b>以下情形应<strong>及时取消受助资格，停止发放</strong>：</b><br>
+          • 因应征入伍服义务兵役、退学、转学、休学、开除、死亡等原因不能继续在校学习<br>
+          • 因违法、违规、违纪等行为受到<strong>记过、留校察看</strong>等纪律处分<br>
+          • 超过基本修业年限的在校生不再享受国家助学金<br>
+          • 结余资金结转下一年度继续用于困难学生资助
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL: 特殊困难补助
+     ══════════════════════════════════════ -->
+<div class="panel" id="p-bz">
+
+  <div class="sec">
+    <div class="sec-ttl">家庭经济困难学生特殊困难补助管理办法</div>
+
+    <!-- 总则 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第一章 总则</div>
+      <div class="info">保障学生不因家庭经济困难而影响学业或失学，切实帮助家庭经济困难学生顺利完成学业。</div>
+      <div class="info" style="margin-top:6px"><b>实施原则：</b></div>
+      <div class="info">① 公开、公平、公正——确保学生对政策应知尽知，资格审查严格、透明，结果面向学生公示</div>
+      <div class="info">② 实事求是、统筹协调——充分考虑实际情况，统筹各类奖助学金，避免过度资助</div>
+      <div class="info">③ 应缴尽缴、从严控制——鼓励通过助学贷款解决学费住宿费，鼓励通过勤工助学和奖助学金靠劳动和努力解决困难</div>
+      <div class="alt alt-y" style="margin-top:8px">⚠️ <b>前置条件：</b>学生须先按时缴纳学费等规定费用，办理报到注册手续之后，方可按照本办法提出申请。</div>
+    </div>
+
+    <!-- 对象条件标准 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第二章 补助对象、条件与标准</div>
+
+      <div class="col-head open" onclick="toggleCol(this)">👥 可申请对象（需同时满足：在库困难学生 + 以下之一）</div>
+      <div class="col-body show">
+        <div class="info">（一）革命烈士或因公牺牲军烈属子女</div>
+        <div class="info">（二）无经济来源、无法定赡养人或社会福利机构收养或事实孤儿</div>
+        <div class="info">（三）残疾家庭、城乡低保家庭、脱贫不稳定家庭、边缘易致贫家庭、突发严重困难家庭</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">✅ 申请条件（须同时具备）</div>
+      <div class="col-body">
+        <div class="info">（一）热爱祖国、拥护中国共产党的领导，道德品质优良</div>
+        <div class="info">（二）自觉遵守法律法规和学院各项规章制度，未受过纪律处分</div>
+        <div class="info">（三）生活简朴，无铺张浪费行为</div>
+        <div class="info">（四）积极参加勤工助学活动和社会公益劳动</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">💰 补助标准</div>
+      <div class="col-body">
+        <table class="tbl">
+          <thead><tr><th>类别</th><th>标准</th></tr></thead>
+          <tbody>
+            <tr><td>烈士子女或社会福利机构收养、事实孤儿</td><td><strong>5000元/生/学年</strong></td></tr>
+            <tr><td>其他类特殊困难学生（分两个等级）</td><td><strong>2000元/生/学年</strong> 或 <strong>3000元/生/学年</strong></td></tr>
+          </tbody>
+        </table>
+        <div class="info" style="margin-top:6px">特殊困难补助要结合各类奖助学金、国家助学贷款、勤工助学等工作统筹考虑、合理安排，通过不同资助形式相互补充。</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">🚫 不予批准情形</div>
+      <div class="col-body">
+        <div class="alt alt-r">（一）违反法律法规、受到学院纪律处分者或有不良诚信记录者<br>
+        （二）经常迟到、早退、旷课，或不参加集体活动者<br>
+        （三）生活挥霍浪费，造成不良影响者<br>
+        （四）故意隐瞒实情，弄虚作假，情节严重者</div>
+      </div>
+    </div>
+
+    <!-- 组织管理 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第三章 组织管理</div>
+      <div class="info">• <b>各系：</b>负责本系学生特殊困难补助材料的评定与审查</div>
+      <div class="info">• <b>学生工作部学生资助管理中心：</b>负责对各系报送材料进行核查及汇总，上报学院资助工作领导小组审批</div>
+      <div class="info">• <b>财务处：</b>负责学生特殊困难补助的发放</div>
+      <div class="info">• <b>各系：</b>切实做好受助学生银行卡号等相关信息的精准统计汇总</div>
+    </div>
+
+    <!-- 工作流程 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第四章 工作流程</div>
+      <div class="alt alt-b" style="margin-bottom:8px">📅 <b>开展时间：</b>学院学生各类奖助项目申报工作完成后开展，一般在<strong>11月上旬</strong>。每学年集中办理一次，逾期不予办理。</div>
+
+      <div class="steps">
+        <div class="step"><div class="sn">第1步</div><div class="st">学生申请</div>在规定时间内向所在系提出申请，填写《鄂尔多斯职业学院家庭经济困难学生特殊困难补助申请表》，并提供相关家庭经济困难证明材料</div>
+        <div class="step"><div class="sn">第2步</div><div class="st">系审查评定</div>系学生资助工作小组审查和评定→系学生资助工作小组或系党政联席会讨论通过→提出建议名单→<strong>严格执行公示制度</strong>→公示无异议后报学生资助管理中心复审</div>
+        <div class="step"><div class="sn">第3步</div><div class="st">学生资助管理中心核查</div>对各系上报的建议名单及相关材料进行复审→无误后报送学院资助工作领导小组→集体研究通过后进行公示</div>
+        <div class="step"><div class="sn">第4步</div><div class="st">补助落实</div>全院公示无异议后→学生资助管理中心将名单报送<strong>财务处</strong>予以发放</div>
+      </div>
+    </div>
+
+    <!-- 资助育人 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第五章（第五章） 资助育人工作</div>
+      <div class="info">文件要求各系部做好以下五方面工作：</div>
+      <div class="info" style="margin-top:4px">• <b>精准资助——</b>建立健全困难学生精准认定体系，从个人申请、日常消费、民主评议、平时表现、家庭走访等多维度评价</div>
+      <div class="info">• <b>精神激励——</b>引导受助学生知恩感恩，培养诚信意识，宣传资助育人先进典型</div>
+      <div class="info">• <b>学业帮扶——</b>配备学业帮扶导师、建立家校互动帮扶机制、定期开展朋辈交流</div>
+      <div class="info">• <b>拓展能力——</b>设立勤工助学实践创新项目，提升综合素质</div>
+      <div class="info">• <b>就业服务——</b>实施"一生一策"和"一对一"帮扶，确保受助毕业生充分就业、高质量就业</div>
+      <div class="info">• <b>心理健康——</b>关注受助学生心理状况，做好心理危机预防及排查</div>
+    </div>
+
+    <!-- 附则 -->
+    <div class="card">
+      <div class="info">本办法由学生工作部负责解释，自印发之日起施行。原《鄂尔多斯职业学院家庭经济困难学生学费减免管理办法》（鄂职政字〔2019〕22号）同时废止。</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL: 家庭经济困难学生认定
+     ══════════════════════════════════════ -->
+<div class="panel" id="p-rd">
+
+  <div class="sec">
+    <div class="sec-ttl">家庭经济困难学生认定（摘自《国家助学金评审实施办法》第二章）</div>
+
+    <!-- 定义与依据 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">认定定义</div>
+      <div class="info">家庭经济困难学生是指<strong>学生本人及其家庭所能筹集到的资金难以支付其在校期间学习和生活基本费用</strong>的学生。</div>
+
+      <div class="col-head open" onclick="toggleCol(this)" style="margin-top:8px">📋 认定依据（5个维度）</div>
+      <div class="col-body show">
+        <div class="info">（一）<b>家庭经济因素</b>——学生家庭收入、债务等情况</div>
+        <div class="info">（二）<b>特殊群体因素</b>——是否属于脱贫不稳定家庭、边缘易致贫家庭、最低生活保障家庭、突发严重困难家庭、特困供养、孤儿（事实无人抚养）、烈士子女、残疾学生、残疾人子女等</div>
+        <div class="info">（三）<b>突发状况因素</b>——遭受重大自然灾害、重大突发意外事件、本人或直系亲属突发重大疾病等</div>
+        <div class="info">（四）<b>学生消费因素</b>——消费金额、结构是否合理</div>
+        <div class="info">（五）<b>其他因素</b>——家庭上学人数、劳动力情况、父母文化和职业、家庭成员身体状况等</div>
+      </div>
+    </div>
+
+    <!-- 认定等级 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">认定等级（三个等级）</div>
+      <table class="tbl">
+        <thead><tr><th>等级</th><th>标准</th><th>主要情形</th></tr></thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--r);font-weight:700">特别困难</td>
+            <td>家庭<strong>完全不能</strong>提供基本上学费用</td>
+            <td>脱贫不稳定家庭学生、边缘易致贫家庭学生、最低生活保障家庭学生、突发严重困难家庭学生、特困供养学生、孤儿（事实无人抚养）学生、烈士子女、家庭经济困难残疾学生、残疾人子女</td>
+          </tr>
+          <tr>
+            <td style="color:var(--y);font-weight:700">比较困难</td>
+            <td>家庭仅能提供<strong>小部分</strong>基本上学费用</td>
+            <td>①父母丧失大部分劳动能力，家庭无主要经济来源且外欠债务<br>②家庭供养人口较多且无稳定经济来源<br>③收入明显低于当地平均水平且家庭成员2人以上就读高中或大学<br>④因自然灾害、家庭变故、本人或家庭成员患重病等发生临时经济困难</td>
+          </tr>
+          <tr>
+            <td style="color:var(--g);font-weight:700">一般困难</td>
+            <td>家庭<strong>尚不能完全</strong>提供全部基本上学费用</td>
+            <td>①父母丧失部分劳动能力，家庭无主要经济来源<br>②收入低于当地平均水平且家庭成员2人以上就读<br>③本人或家庭成员患慢性疾病需长期服药治疗</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 不予认定 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">不予认定的情形</div>
+      <div class="alt alt-r">
+        （一）学生或监护人不如实填写《家庭经济困难学生认定申请表》，伪造支撑材料的<br>
+        （二）学生在校期间消费水平特别高，明显超出正常消费水平的<br>
+        （三）其他不符合家庭经济困难学生认定要求的情形
+      </div>
+    </div>
+
+    <!-- 组织机构 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">工作组织机构及职责</div>
+      <div class="info"><b>学院层面：</b>学生资助工作领导小组——全面负责认定工作；学生资助管理中心——具体负责组织和核准全院认定工作</div>
+      <div class="info" style="margin-top:6px"><b>系层面：</b>以党总支书记为组长，辅导员、班主任代表等组成的认定工作组——负责本系认定具体组织和审核，审核无异议后在<strong>本系范围内公示</strong></div>
+      <div class="info" style="margin-top:6px"><b>班级层面：</b>以辅导员、班主任、学生代表等组成的认定评议小组（人数<strong>不少于本班学生总人数的10%</strong>）——负责本班认定评议具体工作</div>
+    </div>
+
+    <!-- 认定程序 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">认定程序（5步）</div>
+      <div class="alt alt-b" style="margin-bottom:8px">📅 <b>认定时间：</b>每学年开展一次，于<strong>每年9月</strong>进行认定或调整。遇特殊情况每学期可根据实际情况进行动态调整。</div>
+
+      <div class="steps">
+        <div class="step"><div class="sn">第1步</div><div class="st">提前告知</div>向新生寄送录取通知书时同时寄送《家庭经济困难学生认定申请表》；每学年结束前向在校生发放申请表及资助政策宣传材料</div>
+        <div class="step"><div class="sn">第2步</div><div class="st">个人申请</div>学生本人自愿提出申请，提交《家庭经济困难学生认定申请表》并承诺信息真实可靠。属特殊群体（脱贫不稳定/低保/孤儿/烈士子女/残疾等）需提交相关佐证材料，复印件由学院存档备查</div>
+        <div class="step"><div class="sn">第3步</div><div class="st">班级民主评议及系部认定</div>班级评议小组回收申请表及佐证材料→参照日常表现、消费情况及同学意见召开评议会议→初步提出各等级名单→报系认定工作组审核→系内<strong>以适当方式公示5个工作日</strong>（严禁涉及个人敏感信息及隐私）→如有异议3个工作日内答复</div>
+        <div class="step"><div class="sn">第4步</div><div class="st">学院核准</div>学生资助管理中心核准和汇总各系名单→提出全院各等级名单→报学生资助工作领导小组批准</div>
+        <div class="step"><div class="sn">第5步</div><div class="st">建档备案</div>各系将名单汇总，连同申请表、佐证材料复印件按学年整理装订→建立困难学生信息档案→建立数据库→学生资助管理中心负责<strong>录入全国学生资助管理信息系统</strong></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="ft">
+  <p>鄂尔多斯职业学院 · 化学工程系</p>
+  <p style="margin-top:2px">数据来源：鄂尔多斯职业学院学生资助管理制度&nbsp;|&nbsp;</p>
+</div>
+
+</div>
+
+<script>
+// Tab switching
+document.querySelectorAll('.tabs .tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    document.querySelectorAll('.tabs .tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('on')});
+    this.classList.add('on');
+    document.getElementById(this.dataset.p).classList.add('on');
+  });
+});
+
+// Global function for subnav links
+function switchTab(pid) {
+  document.querySelectorAll('.tabs .tab').forEach(function(x){x.classList.remove('on')});
+  document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('on')});
+  var tab = document.querySelector('.tab[data-p="'+pid+'"]');
+  if(tab) tab.classList.add('on');
+  var panel = document.getElementById(pid);
+  if(panel) panel.classList.add('on');
+  // scroll to top of panels
+  document.querySelector('.tabs').scrollIntoView({behavior:'smooth'});
+}
+
+// Collapse toggle
+function toggleCol(head) {
+  head.classList.toggle('open');
+  head.nextElementSibling.classList.toggle('show');
+}
+</script>
+
+</body>
+</html>
