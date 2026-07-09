@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学生实习操作步骤</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root {
+  --blue-900:#0f2740; --blue-800:#1a365d; --blue-700:#2c5282;
+  --blue-600:#3182ce; --blue-500:#4299e1; --blue-100:#ebf8ff;
+  --gold:#d69e2e; --gold-dark:#975a16; --gold-light:#fffff0;
+  --red:#e53e3e; --red-light:#fff5f5;
+  --green:#38a169; --green-light:#f0fff4;
+  --gray-50:#f7fafc; --gray-100:#edf2f7; --gray-200:#e2e8f0;
+  --gray-500:#718096; --gray-700:#4a5568; --gray-800:#2d3748; --gray-900:#1a202c;
+  --white:#fff;
+}
+
+body {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background: #eef2f6; color: var(--gray-800); line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Hero ===== */
+.hero {
+  background: linear-gradient(145deg, #0b1e33 0%, #162d4a 35%, #1e3a5f 70%, #2c5282 100%);
+  color: #fff; padding: 44px 24px 38px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content:''; position:absolute; width:600px; height:600px;
+  background: radial-gradient(circle, rgba(99,179,237,0.1) 0%, transparent 65%);
+  top:-30%; right:-15%; border-radius:50%; pointer-events:none;
+}
+.hero::after {
+  content:''; position:absolute; width:400px; height:400px;
+  background: radial-gradient(circle, rgba(214,158,46,0.08) 0%, transparent 65%);
+  bottom:-20%; left:-10%; border-radius:50%; pointer-events:none;
+}
+.hero h1 { font-size:30px; font-weight:700; position:relative; z-index:1; letter-spacing:1px; }
+.hero .sub { font-size:15px; opacity:0.82; margin-top:8px; position:relative; z-index:1; }
+.hero .tags { margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; position:relative; z-index:1; }
+.hero .tag {
+  padding:7px 16px; border-radius:20px; font-size:12px; font-weight:500;
+  background: rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(4px); display:inline-flex; align-items:center; gap:6px;
+}
+
+.wrap { max-width:960px; margin:0 auto; padding:24px 16px 40px; }
+
+/* ===== Section Title ===== */
+.sec-title {
+  display:flex; align-items:center; gap:12px;
+  font-size:21px; font-weight:700; color: var(--blue-800);
+  margin: 36px 0 18px;
+}
+.sec-title .n {
+  width:38px; height:38px; border-radius:10px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(135deg, var(--blue-600), var(--blue-700));
+  color:#fff; font-size:17px; font-weight:700;
+}
+
+/* ===== Card ===== */
+.card {
+  background: var(--white); border-radius:14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06); overflow:hidden;
+}
+.card-header {
+  padding:20px 24px; border-bottom:1px solid var(--gray-100);
+  display:flex; align-items:center; gap:14px;
+}
+.card-header .icon {
+  width:46px; height:46px; border-radius:12px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:22px;
+}
+.card-header .icon.blue  { background: var(--blue-100); }
+.card-header .icon.gold  { background: var(--gold-light); }
+.card-header .icon.green { background: var(--green-light); }
+.card-header h3 { font-size:17px; color: var(--gray-900); }
+.card-header .muted { font-size:12px; color: var(--gray-500); }
+.card-body { padding:20px 24px; }
+
+/* ===== SVG Flowchart ===== */
+.flowchart-wrap {
+  background: var(--white); border-radius:14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  padding: 28px 16px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.flowchart-wrap svg { display:block; margin:0 auto; }
+
+/* Step 1 field blocks */
+.node-box {
+  fill: #fff; stroke-width:1.8; rx:8; ry:8;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+}
+.node-box.base   { stroke: #3182ce; }
+.node-box.branch { stroke: #d69e2e; }
+.node-box.skip   { stroke: #a0aec0; stroke-dasharray: 5 4; }
+.node-box.file   { stroke: #e53e3e; }
+
+.node-title { font-size:12px; font-weight:700; letter-spacing:0.3px; }
+.node-title.base   { fill: #3182ce; }
+.node-title.branch { fill: #975a16; }
+.node-title.skip   { fill: #718096; }
+.node-title.file   { fill: #c53030; }
+
+.node-text  { font-size:12px; fill: #2d3748; }
+.node-hint  { font-size:10px; fill: #a0aec0; }
+.node-field { font-size:11px; fill: #2c5282; font-weight:600; }
+
+.arrow-line { stroke: #cbd5e0; stroke-width:1.8; fill:none; }
+.arrow-line.branch { stroke: #d69e2e; stroke-dasharray: 6 3; }
+
+/* ===== Step Module Cards ===== */
+.module-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px;
+}
+.module {
+  background: var(--white); border-radius:14px; padding:24px; text-align:center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.module .moji { font-size:38px; margin-bottom:12px; }
+.module h4 { font-size:16px; margin-bottom:6px; color: var(--gray-900); }
+.module .path-line {
+  display:flex; align-items:center; justify-content:center;
+  gap:6px; flex-wrap:wrap; margin:12px 0; font-size:13px;
+}
+.module .path-line .seg {
+  background: var(--gray-50); border:1px solid var(--gray-200);
+  padding:4px 10px; border-radius:6px; color: var(--gray-700); white-space:nowrap;
+}
+.module .path-line .seg.hl { background: var(--blue-100); border-color: var(--blue-500); color: var(--blue-700); font-weight:600; }
+.module .path-line .arr { color: var(--blue-400); font-weight:700; font-size:12px; }
+.module .note { font-size:12px; color: var(--gray-500); margin-top:8px; }
+
+/* ===== Overall SVG ===== */
+.overview-wrap {
+  background: var(--white); border-radius:14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  padding: 20px 8px; overflow-x:auto;
+}
+.overview-wrap svg { display:block; margin:0 auto; min-width:700px; }
+
+/* ===== Tip ===== */
+.tip {
+  margin-top:20px; padding:14px 18px; border-radius:10px; font-size:13px; line-height:1.8;
+}
+.tip.info { background: var(--blue-100); border-left:4px solid var(--blue-500); color: #2a4365; }
+.tip.warn { background: var(--red-light); border-left:4px solid var(--red); color:#742a2a; }
+
+/* ===== Bottom Nav ===== */
+.bottom-nav {
+  margin-top:36px; padding:20px; text-align:center;
+  background: var(--white); border-radius:14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.bottom-nav a {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:10px 22px; border-radius:22px; text-decoration:none;
+  font-size:14px; font-weight:500; margin:4px;
+}
+.bottom-nav .back { background: var(--gray-100); color: var(--gray-700); }
+.bottom-nav .back:hover { background: var(--gray-200); }
+.bottom-nav .home { background: var(--blue-50); color: var(--blue-700); }
+.bottom-nav .home:hover { background: #dbeafe; }
+.copyright { text-align:center; padding:14px; font-size:11px; color: var(--gray-500); }
+
+@media (max-width:640px) {
+  .hero h1 { font-size:22px; }
+  .module-grid { grid-template-columns:1fr; }
+  .flowchart-wrap { padding:16px 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Hero ===== -->
+<div class="hero">
+  <h1>🗺️ 学生实习操作步骤</h1>
+  <p class="sub">i鄂院岗位实习申请 · 从计划提交到实习完成</p>
+  <div class="tags">
+    <span class="tag">📱 i鄂院 · 智慧实训安全</span>
+    <span class="tag">📋 实习计划申请</span>
+    <span class="tag">🏭 2025-2026学年</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ==================== 全景总览 ==================== -->
+<div class="sec-title"><span class="n">览</span> 全景流程总览</div>
+<div class="overview-wrap">
+  <svg viewBox="0 0 880 210" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4299e1"/><stop offset="100%" stop-color="#2c5282"/></linearGradient>
+      <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ecc94b"/><stop offset="100%" stop-color="#b7791f"/></linearGradient>
+      <linearGradient id="gGreen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#68d391"/><stop offset="100%" stop-color="#276749"/></linearGradient>
+      <filter id="sh"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.12"/></filter>
+      <marker id="arrB" mkWidth="9" mkHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0,0 9,3.5 0,7" fill="#4299e1"/></marker>
+      <marker id="arrGy" mkWidth="9" mkHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0,0 9,3.5 0,7" fill="#a0aec0"/></marker>
+      <marker id="arrGR" mkWidth="9" mkHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0,0 9,3.5 0,7" fill="#38a169"/></marker>
+    </defs>
+
+    <!-- Step 1 -->
+    <rect x="20" y="55" width="170" height="90" rx="14" fill="url(#gBlue)" filter="url(#sh)"/>
+    <text x="105" y="90" text-anchor="middle" fill="#fff" font-size="30">📝</text>
+    <text x="105" y="116" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">步骤一</text>
+    <text x="105" y="135" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11">提交实习计划申请</text>
+
+    <!-- arrow 1→2 -->
+    <line x1="190" y1="100" x2="238" y2="100" stroke="#4299e1" stroke-width="2.5" marker-end="url(#arrB)"/>
+
+    <!-- Step 2 -->
+    <rect x="245" y="55" width="170" height="90" rx="14" fill="url(#gGold)" filter="url(#sh)"/>
+    <text x="330" y="90" text-anchor="middle" fill="#fff" font-size="30">📄</text>
+    <text x="330" y="116" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">步骤二</text>
+    <text x="330" y="135" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11">签订三方协议及附件</text>
+
+    <!-- arrow 2→ split -->
+    <line x1="415" y1="100" x2="475" y2="100" stroke="#a0aec0" stroke-width="2" marker-end="url(#arrGy)"/>
+    <line x1="480" y1="100" x2="480" y2="62" stroke="#a0aec0" stroke-width="2" marker-end="url(#arrGR)"/>
+    <line x1="480" y1="100" x2="480" y2="138" stroke="#a0aec0" stroke-width="2" marker-end="url(#arrGR)"/>
+
+    <!-- Step 3 top -->
+    <rect x="488" y="10" width="170" height="80" rx="14" fill="url(#gGreen)" filter="url(#sh)"/>
+    <text x="573" y="42" text-anchor="middle" fill="#fff" font-size="28">📍</text>
+    <text x="573" y="64" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">步骤三 · 每日打卡</text>
+    <text x="573" y="81" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="10">i鄂院我的打卡记录</text>
+
+    <!-- Step 4 bottom -->
+    <rect x="488" y="115" width="170" height="80" rx="14" fill="url(#gGreen)" filter="url(#sh)"/>
+    <text x="573" y="147" text-anchor="middle" fill="#fff" font-size="28">📓</text>
+    <text x="573" y="169" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">步骤四 · 周志报告</text>
+    <text x="573" y="186" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="10">每周上传 · 实习期间持续</text>
+
+    <!-- converge -->
+    <line x1="658" y1="50" x2="700" y2="50" stroke="#a0aec0" stroke-width="2"/>
+    <line x1="658" y1="155" x2="700" y2="155" stroke="#a0aec0" stroke-width="2"/>
+    <line x1="700" y1="50" x2="700" y2="155" stroke="#a0aec0" stroke-width="2"/>
+    <line x1="700" y1="102" x2="725" y2="102" stroke="#a0aec0" stroke-width="2" marker-end="url(#arrGy)"/>
+
+    <!-- Done -->
+    <rect x="730" y="52" width="130" height="100" rx="14" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5" filter="url(#sh)"/>
+    <text x="795" y="92" text-anchor="middle" fill="#4a5568" font-size="30">✅</text>
+    <text x="795" y="114" text-anchor="middle" fill="#4a5568" font-size="13" font-weight="700">实习完成</text>
+    <text x="795" y="133" text-anchor="middle" fill="#a0aec0" font-size="10">提交全部材料</text>
+
+    <!-- annotation -->
+    <text x="560" y="215" text-anchor="middle" fill="#a0aec0" font-size="11">步骤三、四在实习期间并行开展</text>
+  </svg>
+</div>
+
+<!-- ==================== 步骤一：详细流程图 ==================== -->
+<div class="sec-title"><span class="n">1</span> 步骤一：i鄂院提交实习计划申请</div>
+
+<div class="flowchart-wrap">
+  <svg viewBox="0 0 880 1100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="sh2"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/></filter>
+      <filter id="sh3"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.07"/></filter>
+      <marker id="aB" mkWidth="8" mkHeight="6" refX="7" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#a0aec0"/></marker>
+      <marker id="aBl" mkWidth="8" mkHeight="6" refX="7" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#3182ce"/></marker>
+      <marker id="aGo" mkWidth="8" mkHeight="6" refX="7" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#d69e2e"/></marker>
+    </defs>
+
+    <!-- ===== HEADER: Entry Point ===== -->
+    <rect x="290" y="0" width="300" height="44" rx="22" fill="#1a365d" filter="url(#sh2)"/>
+    <text x="440" y="28" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">i鄂院 · 智慧实训安全 · 实习管理</text>
+
+    <line x1="440" y1="44" x2="440" y2="65" stroke="#a0aec0" stroke-width="2" marker-end="url(#aB)"/>
+
+    <rect x="290" y="70" width="300" height="36" rx="8" fill="#edf2f7" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="440" y="93" text-anchor="middle" fill="#4a5568" font-size="12">实习计划管理 → 实习计划申请 → 创建</text>
+
+    <line x1="440" y1="106" x2="440" y2="128" stroke="#a0aec0" stroke-width="2" marker-end="url(#aB)"/>
+
+    <!-- ===== GROUP 1: 基础信息 ===== -->
+    <rect x="270" y="132" width="340" height="74" rx="10" fill="#fff" stroke="#3182ce" stroke-width="1.8" filter="url(#sh3)"/>
+    <rect x="270" y="132" width="340" height="22" rx="10" fill="#3182ce"/>
+    <rect x="270" y="144" width="340" height="10" fill="#3182ce"/>
+    <text x="440" y="148" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">基础信息</text>
+    <text x="440" y="174" text-anchor="middle" fill="#2d3748" font-size="13">实习标题 <tspan fill="#3182ce" font-weight="600">学号+姓名</tspan>　|　实习学年 <tspan fill="#3182ce" font-weight="600">2025-2026学年</tspan></text>
+    <text x="440" y="195" text-anchor="middle" fill="#a0aec0" font-size="10">必填项</text>
+
+    <line x1="440" y1="206" x2="440" y2="228" stroke="#a0aec0" stroke-width="2" marker-end="url(#aB)"/>
+
+    <!-- ===== GROUP 2: 组织形式（分支） ===== -->
+    <rect x="220" y="232" width="440" height="92" rx="10" fill="#fff" stroke="#d69e2e" stroke-width="1.8" filter="url(#sh3)"/>
+    <rect x="220" y="232" width="440" height="22" rx="10" fill="#d69e2e"/>
+    <rect x="220" y="244" width="440" height="10" fill="#d69e2e"/>
+    <text x="440" y="248" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">实习组织形式 ⚡ 分支选择</text>
+    <text x="440" y="274" text-anchor="middle" fill="#2d3748" font-size="13">实习组织形式 → <tspan fill="#d69e2e" font-weight="600">学校统一安排</tspan> 或 <tspan fill="#d69e2e" font-weight="600">自主实习</tspan></text>
+    <text x="440" y="296" text-anchor="middle" fill="#2d3748" font-size="13">跨省实习 → <tspan fill="#2d3748" font-weight="600">是 / 否</tspan>　（根据实习单位所在地选择）</text>
+    <text x="440" y="316" text-anchor="middle" fill="#a0aec0" font-size="10">必填 · 需与三方协议信息保持一致</text>
+
+    <line x1="440" y1="324" x2="440" y2="346" stroke="#a0aec0" stroke-width="2" marker-end="url(#aB)"/>
+
+    <!-- 自主实习额外提示 -->
+    <rect x="120" y="310" width="190" height="66" rx="8" fill="#fffff0" stroke="#d69e2e" stroke-width="1.2" stroke-dasharray="5 3" filter="url(#sh3)"/>
+    <text x="215" y="330" text-anchor="middle" fill="#975a16" font-size="10" font-weight="700">⚠ 若选「自主实习」</text>
+    <text x="215" y="346" text-anchor="middle" fill="#975a16" font-size="10">需额外准备：附件2 7 8 9 11 12</text>
+    <text x="215" y="362" text-anchor="middle" fill="#975a16" font-size="10">详见学生岗位实习行动指南</text>
+    <line x1="120" y1="343" x2="100" y2="343" stroke="#d69e2e" stroke-width="1.2" stroke-dasharray="4 3"/>
+
+    <!-- 跨省提示 -->
+    <rect x="580" y="310" width="190" height="66" rx="8" fill="#fff5f5" stroke="#e53e3e" stroke-width="1.2" stroke-dasharray="5 3" filter="url(#sh3)"/>
+    <text x="675" y="330" text-anchor="middle" fill="#c53030" font-size="10" font-weight="700">⚠ 若选「跨省实习」</text>
+    <text x="675" y="346" text-anchor="middle" fill="#c53030" font-size="10">五月底前申请 → 院长办公会审议</text>
+    <text x="675" y="362" text-anchor="middle" fill="#c53030" font-size="10">实习前15日向市省两级备案</text>
+
+    <line x1="440" y1="346" x2="440" y2="372" stroke="#a0aec0" stroke-width="2" marker-end="url(#aB)"/>
+
+    <!-- ===== GROUP 3: 指导教师 ===== -->
+    <rect x="250" y="376" width="380" height="88" rx="10" fill="#fff" stroke="#3182ce" stroke-width="1.8" filter="url(#sh3)"/>
+    <rect x="250" y="376" width="380" height="22" rx="10" fill="#3182ce"/>
+    <rect x="250" y="388" width="380" height="10" fill="#3182ce"/>
+    <text x="440" y="392" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">指导教师信息</text>
+    <text x="440" y="418" text-anchor="middle" fill="#2d3748" font-size="13">企业指导老师 → <tspan fill="#a0aec0" font-weight="600">不填</tspan></text>
+    <text x="440" y="440" text-anchor="middle" fill="#a0aec0" font-size="10">待企业安全培训完毕、确定企业师傅后，将信息发给班主任进行录入</text>
+    <text x="440" y="458" text-anchor="middle" fill="#2d3748" font-size="13">学校指导老师 → <tspan fill="#3182ce" font-weight="600">班主任信息</tspan></text>
+
+    <line x1="440" y1="464" x2="440" y2="486" stroke="#a0aec0" stroke-width="2" marker-end="url(#aB)"/>
+
+    <!-- ===== GROUP 4: 实习时间 ===== -->
+    <rect x="250" y="490" width="380" height="74" rx="10" fill="#fff" stroke="#3182ce" stroke-width="1.8" filter="url(#sh3)"/>
+    <rect x="250" y="490" width="380" height="22" rx="10" fill="#3182ce"/>
+    <rect x="250" y="502" width="380" height="10" fill="#3182ce"/>
+    <text x="440" y="506" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">实习时间</text>
+    <text x="440" y="532" text-anchor="middle" fill="#2d3748" font-size="13">实习开始时间 / 结束时间 → 均<tspan fill="#3182ce" font-weight="600">以三方协议为准</tspan></text>
+    <text x="440" y="553" text-anchor="middle" fill="#2d3748" font-size="13">有限天数 → <tspan fill="#a0aec0" font-weight="600">不填</tspan></text>
+
+    <line x1="440" y1="564" x2="440" y2="586" stroke="#a0aec0" stroke-width="2" marker-end="url(#aB)"/>
+
+    <!-- ===== GROUP 5: 实习内容 ===== -->
+    <rect x="250" y="590" width="380" height="74" rx="10" fill="#fff" stroke="#3182ce" stroke-width="1.8" filter="url(#sh3)"/>
+    <rect x="250" y="590" width="380" height="22" rx="10" fill="#3182ce"/>
+    <rect x="250" y="602" width="380" height="10" fill="#3182ce"/>
+    <text x="440" y="606" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">实习内容与条件</text>
+    <text x="440" y="632" text-anchor="middle" fill="#2d3748" font-size="13">实习岗位 → <tspan fill="#3182ce" font-weight="600">以企业实际岗位为准</tspan>　|　实习工资 → <tspan fill="#3182ce" font-weight="600">以三方协议为准</tspan></text>
+    <text x="440" y="653" text-anchor="middle" fill="#2d3748" font-size="13">实习内容 → <tspan fill="#3182ce" font-weight="600">巡检、化验、DCS画面监测</tspan></text>
+
+    <line x1="440" y1="664" x2="440" y2="686" stroke="#a0aec0" stroke-width="2" marker-end="url(#aB)"/>
+
+    <!-- ===== GROUP 6: 实习性质 ===== -->
+    <rect x="210" y="690" width="460" height="74" rx="10" fill="#fff" stroke="#3182ce" stroke-width="1.8" filter="url(#sh3)"/>
+    <rect x="210" y="690" width="460" height="22" rx="10" fill="#3182ce"/>
+    <rect x="210" y="702" width="460" height="10" fill="#3182ce"/>
+    <text x="440" y="706" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">实习性质确认</text>
+    <text x="440" y="732" text-anchor="middle" fill="#2d3748" font-size="13">专业对口 → <tspan fill="#3182ce" font-weight="600">是</tspan>　|　购买保险 → <tspan fill="#3182ce" font-weight="600">是</tspan>　|　签订三方协议 → <tspan fill="#3182ce" font-weight="600">是</tspan>　|　高风险实习 → <tspan fill="#3182ce" font-weight="600">否</tspan></text>
+    <text x="440" y="753" text-anchor="middle" fill="#a0aec0" font-size="10">必填 · 全部按实际情况勾选</text>
+
+    <line x1="440" y1="764" x2="440" y2="786" stroke="#a0aec0" stroke-width="2" marker-end="url(#aB)"/>
+
+    <!-- ===== GROUP 7: 工作条件 ===== -->
+    <rect x="270" y="790" width="340" height="58" rx="10" fill="#fff" stroke="#3182ce" stroke-width="1.8" filter="url(#sh3)"/>
+    <rect x="270" y="790" width="340" height="22" rx="10" fill="#3182ce"/>
+    <rect x="270" y="802" width="340" height="10" fill="#3182ce"/>
+    <text x="440" y="806" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">工作条件</text>
+    <text x="440" y="832" text-anchor="middle" fill="#2d3748" font-size="13">是否加班夜班 → 按实际选择　|　是否休息日/节假日休息 → 按实际选择</text>
+
+    <line x1="440" y1="848" x2="440" y2="870" stroke="#a0aec0" stroke-width="2" marker-end="url(#aB)"/>
+
+    <!-- ===== GROUP 8: 备案 ===== -->
+    <rect x="290" y="874" width="300" height="44" rx="10" fill="#fff" stroke="#3182ce" stroke-width="1.8" filter="url(#sh3)"/>
+    <text x="440" y="896" text-anchor="middle" fill="#2d3748" font-size="13">各类特殊情况的备案状态 → <tspan fill="#3182ce" font-weight="600">无需备案</tspan></text>
+    <text x="440" y="912" text-anchor="middle" fill="#a0aec0" font-size="10">跨省实习请按实际情况选择</text>
+
+    <line x1="440" y1="918" x2="440" y2="940" stroke="#a0aec0" stroke-width="2" marker-end="url(#aB)"/>
+
+    <!-- ===== GROUP 9: 附件 ===== -->
+    <rect x="240" y="944" width="400" height="60" rx="10" fill="#fff5f5" stroke="#e53e3e" stroke-width="1.8" filter="url(#sh3)"/>
+    <rect x="240" y="944" width="400" height="22" rx="10" fill="#e53e3e"/>
+    <rect x="240" y="956" width="400" height="10" fill="#e53e3e"/>
+    <text x="440" y="960" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">上传附件</text>
+    <text x="440" y="986" text-anchor="middle" fill="#c53030" font-size="13" font-weight="600">根据自己专业，上传：附件5（岗位实习方案）+ 附件6（岗位实习任务书）</text>
+
+    <!-- ===== FINISH node ===== -->
+    <line x1="440" y1="1004" x2="440" y2="1025" stroke="#e53e3e" stroke-width="2"/>
+
+    <rect x="320" y="1030" width="240" height="40" rx="20" fill="#38a169" filter="url(#sh2)"/>
+    <text x="440" y="1055" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">✅ 提交申请</text>
+  </svg>
+</div>
+
+<div class="tip info">
+  <strong>💡 提交后</strong>
+  等待审批通过 → 进入步骤二（签订三方协议）。审批进度可在 i鄂院-实习管理中查看。
+</div>
+
+<!-- ==================== 步骤二 ==================== -->
+<div class="sec-title"><span class="n">2</span> 步骤二：签订三方协议及附件</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="icon gold">📄</div>
+    <div><h3>签订三方协议并准备附件材料</h3><div class="muted">步骤一审批通过后即可进行</div></div>
+  </div>
+  <div class="card-body">
+    <div class="module-grid">
+      <div class="module">
+        <div class="moji">📝</div>
+        <h4>签订附件3：三方协议</h4>
+        <p style="font-size:13px;color:var(--gray-700);margin-top:4px;">
+          一式三份，甲、乙、丙三方各执一份<br>
+          逐空填写、手写签署、加盖单位公章<br>
+          不得删减修改
+        </p>
+      </div>
+      <div class="module">
+        <div class="moji">📎</div>
+        <h4>提交扫描件 + 配套附件</h4>
+        <p style="font-size:13px;color:var(--gray-700);margin-top:4px;">
+          签订后提交三方协议扫描件<br>
+          按市域/省域分开提交<br>
+          自主实习：额外准备附件2/7/8/9/11/12
+        </p>
+      </div>
+    </div>
+    <div class="tip info" style="margin-top:16px;">
+      <strong>⏰ 时间节点</strong>
+      实习开始前10日完成三方协议签订。自主实习同学还需完成审批表（附件7）、家长知情书（附件8）签署。
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 步骤三 & 四 ==================== -->
+<div class="sec-title"><span class="n">3+4</span> 步骤三 & 四：实习期间并行任务</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="icon green">🔄</div>
+    <div><h3>两项任务在实习期间同时进行，贯穿整个实习周期</h3><div class="muted">进企后开始 → 实习结束</div></div>
+  </div>
+  <div class="card-body">
+    <div class="module-grid">
+      <!-- 步骤三 -->
+      <div class="module">
+        <div class="moji">📍</div>
+        <h4>步骤三：每日打卡</h4>
+        <div class="path-line">
+          <span class="seg">i鄂院</span><span class="arr">→</span>
+          <span class="seg">智慧实训安全</span><span class="arr">→</span>
+          <span class="seg">实习管理</span><span class="arr">→</span>
+          <span class="seg hl">我的打卡记录</span>
+        </div>
+        <p class="note">如有休假或请假，请于"我的请假记录"中申请</p>
+      </div>
+      <!-- 步骤四 -->
+      <div class="module">
+        <div class="moji">📓</div>
+        <h4>步骤四：上传周志 & 报告</h4>
+        <div class="path-line">
+          <span class="seg">i鄂院</span><span class="arr">→</span>
+          <span class="seg">智慧实训安全</span><span class="arr">→</span>
+          <span class="seg hl">我的实习任务</span>
+        </div>
+        <p class="note">
+          每周上传1篇实习周志（至少34篇）<br>
+          实习结束时提交年度实习报告（字数见专业要求）
+        </p>
+      </div>
+    </div>
+    <div class="tip warn" style="margin-top:16px;">
+      <strong>⚠ 周志内容要求</strong>
+      每篇需包含：岗位操作、工艺学习、问题反思、安全心得。前半年18篇，后半年16篇。不得抄袭或空缺，否则影响实习成绩。
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Bottom navigation ==================== -->
+<div class="bottom-nav">
+  <a href="/实习/企业实习学生指南/" class="back">← 返回学生岗位实习行动指南</a>
+  <a href="/" class="home">🏠 返回首页</a>
+</div>
+
+<div class="copyright">鄂尔多斯职业学院化学工程系 · 内容来源于岗位实习相关文件</div>
+
+</div><!-- /wrap -->
+</body>
+</html>

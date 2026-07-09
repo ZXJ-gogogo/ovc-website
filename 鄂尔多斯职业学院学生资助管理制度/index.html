@@ -126,7 +126,7 @@ body{
   <p>化学工程系</p>
   <div class="badges">
     <span>🎓 奖学金</span><span>🤝 助学金</span><span>🆘 困难补助</span>
-    <span>📝 困难认定</span><span>💼 资助育人</span>
+    <span>📝 困难认定</span><span>💼 资助育人</span><span>⭐ 特长奖学金</span>
   </div>
 </div>
 
@@ -148,7 +148,7 @@ body{
 
   <!-- 一、奖学金类 -->
   <div class="sec">
-    <div class="sec-ttl">🎓 奖学金类 <span class="n">6 项</span></div>
+    <div class="sec-ttl">🎓 奖学金类 <span class="n">7 项</span></div>
     <div class="subnav">
       <a href="#" onclick="switchTab('p-jxj')">查看详情 →</a>
     </div>
@@ -162,10 +162,11 @@ body{
         <tr><td>国家励志奖学金</td><td>6000</td><td>二年级以上品学兼优+困难</td><td>排名前30%</td><td>秋季学期</td></tr>
         <tr><td>自治区励志奖学金</td><td>4000</td><td>二年级以上品学兼优+困难</td><td>排名前40%</td><td>秋季学期</td></tr>
         <tr><td>红色工匠奖学金</td><td>2000~5000（三等）</td><td>二年级以上</td><td>排名前25%（可顺延至前40%）</td><td>秋季学期，12月表彰</td></tr>
+        <tr><td>特长奖学金</td><td>一等2000 / 二等1000<br>（6个类别）</td><td>二年级以上</td><td>必修课/选修课无不及格<br>+ 各类别分项条件</td><td>秋季学期（9月申请，10月评审）</td></tr>
       </tbody>
     </table>
 
-    <div class="alt alt-y">💡 <b>兼得规则（文件原文）：</b>国奖/自治区奖学金/乌兰夫奖学金/国励/区励/红色工匠之间原则上不可兼得。但获得奖学金且为困难学生的，可同时申请国家助学金。</div>
+    <div class="alt alt-y">💡 <b>兼得规则（文件原文）：</b>国奖/自治区奖学金/乌兰夫奖学金/国励/区励/红色工匠之间原则上不可兼得。但获得奖学金且为困难学生的，可同时申请国家助学金。特长奖学金可与其他奖学金兼得，但每人每学年申请不超过两项。</div>
   </div>
 
   <!-- 二、助学金类 -->
@@ -413,9 +414,109 @@ body{
     </div>
   </div>
 
+  <!-- ===== 特长奖学金 ===== -->
+  <div class="sec">
+    <div class="sec-ttl">特长奖学金（校设）</div>
+    <div class="card">
+      <div class="chd"><div class="cttl">特长奖学金（校级）</div><div class="tags"><span class="tag" style="background:var(--gl);color:var(--g)">校级奖学金</span></div></div>
+      <div class="info"><b>对象：</b>具有正式学籍、全日制普通高等学历教育的大二及以上学生</div>
+      <div class="info"><b>类别：</b>学习进步奖学金、研究创新奖学金、创业实践奖学金、社会服务奖学金、美育素养奖学金、体育素养奖学金（共6类）</div>
+      <div class="info"><b>金额：</b>一等2000元/人、二等1000元/人</div>
+      <div class="info"><b>名额：</b>各系参评人数的4%~6%为基准，按基准人数1500元/人拨付总金额至各系，由各系制定分配方案</div>
+      <div class="info"><b>时间：</b>每年9月申请，10月评审完毕</div>
+
+      <div class="col-head open" onclick="toggleCol(this)">📋 基本条件（须全部满足）</div>
+      <div class="col-body show">
+        <div class="info">① 热爱社会主义祖国，拥护中国共产党领导；遵守法律法规和校规校纪，无违法违纪违规行为</div>
+        <div class="info">② 品行端正，诚实守信；尊敬师长，团结同学，关心集体，热爱劳动，勤俭节约</div>
+        <div class="info">③ 学习勤奋，成绩优良，当学年必修课、选修课<strong>无不及格现象</strong></div>
+        <div class="info">④ 坚持锻炼身体，积极参加各类文体活动，身体素质良好，达到"学生体质健康标准"</div>
+        <div class="info">⑤ 热心社会公益，积极参加志愿服务活动</div>
+        <div class="info">⑥ 及时足额缴纳学宿费</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 六类特长奖学金分项条件</div>
+      <div class="col-body">
+
+        <div style="margin-bottom:10px">
+          <div class="cttl" style="font-size:14px;margin-bottom:4px">📖 学习进步奖学金</div>
+          <div class="info">进步率≥30%：进步率=(上一学年第一学期排名/第一学期专业总人数 - 上一学年第二学期排名/第二学期专业总人数)×100%</div>
+        </div>
+
+        <div style="margin-bottom:10px">
+          <div class="cttl" style="font-size:14px;margin-bottom:4px">🔬 研究创新奖学金（满足之一）</div>
+          <div class="info">① 参加教育主管部门、人社部门、共青团中央等官方机构主办的学科竞赛及选拔赛，取得优异成绩</div>
+          <div class="info">② 主要作者（前五名）论文被合法期刊收录</div>
+          <div class="info">③ 主要作者（前五名）出版专著</div>
+          <div class="info">④ 主要作者（前五名）获得实用新型专利、国家发明专利或软著</div>
+          <div class="info">⑤ 主要作者（前五名）主持或参与校级及以上科研项目并顺利结项</div>
+        </div>
+
+        <div style="margin-bottom:10px">
+          <div class="cttl" style="font-size:14px;margin-bottom:4px">💼 创业实践奖学金（满足之一）</div>
+          <div class="info">① 作为法定代表人注册成立公司，或组建创业团队取得较好效益或市场前景</div>
+          <div class="info">② 获系级及以上社会实践活动先进个人/先进集体主要成员</div>
+        </div>
+
+        <div style="margin-bottom:10px">
+          <div class="cttl" style="font-size:14px;margin-bottom:4px">🤝 社会服务奖学金（满足之一）</div>
+          <div class="info">① 获系级及以上优秀学生干部/优秀团干部/优秀团员/志愿服务先进个人等荣誉称号</div>
+          <div class="info">② 获系级及以上优秀班集体/优良学风班/先进团支部/志愿服务先进集体的主要成员</div>
+          <div class="info">③ 长期坚持志愿服务并具有典型事迹，表现突出</div>
+          <div class="info">④ 学生会或自管会成员积极参与工作，表现突出并获指导老师和成员推荐</div>
+          <div class="info">⑤ 社团负责人及成员创造性开展工作并取得优异成绩</div>
+        </div>
+
+        <div style="margin-bottom:10px">
+          <div class="cttl" style="font-size:14px;margin-bottom:4px">🎨 美育素养奖学金（满足之一）</div>
+          <div class="info">① 参加官方主办的美育赛事、展演取得优异成绩或获荣誉证书</div>
+          <div class="info">② 积极参加社团/系部/学院组织的各类美育比赛、展演，表现突出</div>
+          <div class="info">③ 积极服务系部/学院组织的各类美育活动，尽职尽责</div>
+        </div>
+
+        <div>
+          <div class="cttl" style="font-size:14px;margin-bottom:4px">🏅 体育素养奖学金（满足之一）</div>
+          <div class="info">① 参加官方组织的各级各类体育赛事，为学院争得荣誉</div>
+          <div class="info">② 积极参加社团/系部/学院组织的各类体育比赛，取得优异成绩</div>
+          <div class="info">③ 积极服务系部/学院组织的各类体育活动，尽职尽责</div>
+        </div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📊 评分体系概要</div>
+      <div class="col-body">
+        <div class="info" style="margin-bottom:4px"><b>学术研究与创新：</b>学科竞赛（国际/全国/自治区/市/院/系级）、发明创造（专利/软著/科研项目）、学术论文（核心期刊/公开发行期刊/论文集/内部刊物）、资格证书（英语/计算机/职业技能/普通话）</div>
+        <div class="info" style="margin-bottom:4px"><b>创业与社会实践：</b>创业注册公司、社会实践调查报告、社会实践表彰（先进集体/先进个人）</div>
+        <div class="info" style="margin-bottom:4px"><b>社会工作与志愿服务：</b>学生干部任职、各类荣誉称号、先进班集体/团支部、志愿服务表彰、文明宿舍</div>
+        <div class="info"><b>文化艺术与体育健康：</b>文艺类竞赛、文化知识竞赛、体育竞技赛事——各级别按名次/获奖等级赋分</div>
+        <div class="alt alt-b" style="margin-top:8px">💡 评分细则详见《鄂尔多斯职业学院特长奖学金评审实施办法》第八条，含完整赋分表格。同一项目获多项奖励按最高得分计分，不同项目获奖可累加计分。</div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 评审程序（5步）</div>
+      <div class="col-body">
+        <div class="steps">
+          <div class="step"><div class="sn">第1步</div><div class="st">学生申请</div>符合条件的向所在系提出申请，提交《鄂尔多斯职业学院特长奖学金申请表》。原则上每人每学年申请<strong>不超过两项</strong></div>
+          <div class="step"><div class="sn">第2步</div><div class="st">资格审查与公示</div>资格审查评议小组对基本条件和分项条件进行审查→结果在系内公示<strong>3个工作日</strong></div>
+          <div class="step"><div class="sn">第3步</div><div class="st">评审与系内公示</div>各系奖学金评审工作小组根据赋分排序或组织公开答辩确定拟获奖名单→经系党政联席会通过→公示<strong>3个工作日</strong></div>
+          <div class="step"><div class="sn">第4步</div><div class="st">学院审批公示</div>报学生资助管理中心审批→学生资助工作领导小组批准→全院公示<strong>5个工作日</strong></div>
+          <div class="step"><div class="sn">第5步</div><div class="st">发放与表彰</div>一次性发放至学生银行卡；对做出特殊贡献或赢得荣誉的集体或个人额外表彰</div>
+        </div>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 重要规则</div>
+      <div class="col-body">
+        <div class="info">• 特长奖学金为<strong>校设奖学金</strong>，与其他奖学金<strong>可兼得</strong>（各类别单项奖学金可与其他奖学金兼得）</div>
+        <div class="info">• 每人每学年申请<strong>不超过两项</strong>特长奖学金</div>
+        <div class="info">• 严格标准、<strong>宁缺毋滥</strong>——未用完名额纳入学院统筹管理</div>
+        <div class="info">• 申报材料截止时间：上一学年<strong>9月1日至次年8月31日</strong>，以证书签发时间为准</div>
+        <div class="info">• 本办法自<strong>2026年秋季学期</strong>开始施行</div>
+        <div class="info">• 各系按"总量控制、动态分配"原则制定各类别名额和等级分配方案</div>
+      </div>
+    </div>
+  </div>
+
   <!-- 奖学金横向对比 -->
   <div class="sec">
-    <div class="sec-ttl">📊 六项奖学金横向对比</div>
+    <div class="sec-ttl">📊 七项奖学金横向对比</div>
     <table class="tbl">
       <thead><tr><th>项目</th><th>金额</th><th>成绩排名要求</th><th>须为困难学生</th><th>可兼得助学金</th><th>评选方式</th></tr></thead>
       <tbody>
@@ -425,6 +526,7 @@ body{
         <tr><td>国励</td><td>6000</td><td>前30%</td><td><strong>是</strong></td><td>是</td><td>等额评审</td></tr>
         <tr><td>区励</td><td>4000</td><td>前40%</td><td><strong>是</strong></td><td>是</td><td>等额评审</td></tr>
         <tr><td>红色工匠</td><td>2000~5000</td><td>前25%（可至前40%）</td><td>否</td><td>是</td><td>等额评选</td></tr>
+        <tr><td>特长奖学金</td><td>1000~2000</td><td>无不及格+分项条件</td><td>否</td><td>—</td><td>系部评审，总量控制</td></tr>
       </tbody>
     </table>
   </div>
