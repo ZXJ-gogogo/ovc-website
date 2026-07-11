@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>鄂尔多斯职业学院学生违纪处分办法</title>
+<style>
+:root{
+  --p:#1a6fb5; --pl:#e8f2fa;
+  --bg:#f0f2f5; --w:#fff; --t:#1f2937; --tl:#6b7280;
+  /* Severity colors */
+  --s-warn:#e6a817; --s-warn-bg:#fef9e7; --s-warn-txt:#856404;
+  --s-serious:#e67e22; --s-serious-bg:#fff4ec; --s-serious-txt:#a04010;
+  --s-demerit:#d32f2f; --s-demerit-bg:#fdecea; --s-demerit-txt:#a71d2a;
+  --s-probation:#b71c1c; --s-probation-bg:#fbe9e9; --s-probation-txt:#7f0000;
+  --s-expel:#1a1a1a; --s-expel-bg:#f5f5f5; --s-expel-txt:#1a1a1a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font:15px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+  background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;
+}
+
+.hd{
+  background:linear-gradient(135deg,#8b1a1a,#b52b2b,#c83a3a);color:#fff;
+  padding:24px 16px 20px;text-align:center;
+}
+.hd h1{font-size:21px;font-weight:700;letter-spacing:.5px}
+.hd p{font-size:13px;opacity:.85;margin-top:4px}
+.hd .badges{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.hd .badges span{
+  background:rgba(255,255,255,.16);padding:3px 12px;border-radius:16px;
+  font-size:11px;border:1px solid rgba(255,255,255,.2);
+}
+
+.w{max-width:800px;margin:0 auto;padding:0 12px 36px}
+
+/* ── Search ── */
+.search-wrap{
+  position:sticky;top:8px;z-index:10;margin:14px 0 10px;
+  display:flex;gap:6px;align-items:center;
+}
+.search-wrap input{
+  flex:1;padding:10px 14px;border-radius:10px;border:2px solid #e0e3e8;
+  font-size:14px;outline:none;background:var(--w);
+  box-shadow:0 2px 8px rgba(0,0,0,.05);transition:border .2s;
+}
+.search-wrap input:focus{border-color:var(--p)}
+.search-wrap input::placeholder{color:#b0b8c1}
+.search-wrap .clear-btn{
+  padding:10px 14px;border-radius:10px;border:none;background:var(--w);
+  font-size:13px;color:var(--tl);cursor:pointer;white-space:nowrap;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);display:none;
+}
+.search-wrap .clear-btn.show{display:block}
+.search-wrap .result-count{
+  font-size:12px;color:var(--tl);white-space:nowrap;display:none;
+}
+.search-wrap .result-count.show{display:block}
+.search-highlight{background:#fde68a;padding:0 2px;border-radius:2px}
+
+/* ── Tabs ── */
+.tabs{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:5px;margin-bottom:10px;
+}
+@media(min-width:500px){.tabs{grid-template-columns:repeat(4,1fr)}}
+.tab{
+  padding:10px 5px;border-radius:10px;border:none;background:var(--w);
+  font-size:11px;font-weight:600;color:var(--tl);cursor:pointer;
+  text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:all .18s;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+}
+.tab .ico{font-size:17px}
+.tab.on{background:var(--p);color:#fff;box-shadow:0 4px 12px rgba(26,111,181,.3)}
+.tab:active{transform:scale(.96)}
+
+/* ── Panels ── */
+.panel{display:none}
+.panel.on{display:block}
+
+/* ── Cards ── */
+.sec{margin-bottom:14px}
+.sec-ttl{font-size:17px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.sec-ttl .n{font-size:11px;background:var(--pl);color:var(--p);padding:2px 9px;border-radius:10px;font-weight:600}
+
+.card{
+  background:var(--w);border-radius:12px;padding:14px 15px;margin-bottom:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.card.hidden{display:none}
+.chd{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+.cttl{font-size:15px;font-weight:700;flex:1}
+.tags{display:flex;gap:5px;flex-shrink:0}
+.tag{font-size:11px;padding:3px 9px;border-radius:9px;font-weight:600;white-space:nowrap}
+
+.info{font-size:13px;color:var(--tl);margin:3px 0}
+.info b{color:var(--t)}
+
+/* ── Severity badges ── */
+.sv{
+  display:inline-block;font-size:10px;padding:2px 7px;border-radius:8px;
+  font-weight:700;white-space:nowrap;vertical-align:middle;margin:0 2px;
+}
+.sv-w{background:var(--s-warn-bg);color:var(--s-warn-txt);border:1px solid var(--s-warn)}
+.sv-s{background:var(--s-serious-bg);color:var(--s-serious-txt);border:1px solid var(--s-serious)}
+.sv-d{background:var(--s-demerit-bg);color:var(--s-demerit-txt);border:1px solid var(--s-demerit)}
+.sv-p{background:var(--s-probation-bg);color:var(--s-probation-txt);border:1px solid var(--s-probation)}
+.sv-e{background:var(--s-expel-bg);color:var(--s-expel-txt);border:1px solid #999}
+
+/* ── Severity legend ── */
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.legend span{font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600}
+
+/* ── Timeline steps ── */
+.steps{margin:8px 0 0 4px;padding-left:18px;border-left:2px dashed #dde1e6}
+.step{position:relative;padding:8px 0 8px 18px}
+.step::before{
+  content:'';position:absolute;left:-25px;top:12px;width:10px;height:10px;
+  border-radius:50%;background:var(--p);border:2px solid #fff;
+  box-shadow:0 0 0 2px var(--p);
+}
+.step .sn{font-size:11px;color:var(--p);font-weight:700}
+.step .st{font-size:13px;font-weight:600}
+
+/* ── Alert ── */
+.alt{padding:10px 14px;border-radius:8px;font-size:12px;margin:8px 0;line-height:1.6}
+.alt-r{background:var(--s-demerit-bg);color:var(--s-demerit-txt)}
+.alt-y{background:var(--s-warn-bg);color:var(--s-warn-txt)}
+.alt-g{background:#e8f5e9;color:#1b5e20}
+.alt-b{background:var(--pl);color:var(--p)}
+
+/* ── Table ── */
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#f8fafb;padding:7px 8px;text-align:left;font-weight:700;font-size:11px;color:var(--tl);border-bottom:2px solid #e5e7eb}
+.tbl td{padding:6px 8px;border-bottom:1px solid #eee;vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr.hidden{display:none}
+
+/* ── Collapse ── */
+.col-head{
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;user-select:none;font-weight:600;font-size:14px;margin-top:6px;
+}
+.col-head::after{content:'▾';font-size:12px;color:var(--tl);transition:transform .2s}
+.col-head.open::after{transform:rotate(180deg)}
+.col-body{display:none;margin-top:6px}
+.col-body.show{display:block}
+
+/* ── Sub nav ── */
+.subnav{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.subnav a{
+  font-size:11px;padding:4px 10px;border-radius:12px;background:var(--w);
+  color:var(--p);text-decoration:none;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+.subnav a:active{background:var(--p);color:#fff}
+
+/* ── Download cards ── */
+.dl-card{
+  display:flex;align-items:center;gap:12px;background:var(--w);
+  border-radius:12px;padding:14px 15px;margin-bottom:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);text-decoration:none;color:var(--t);
+  transition:border .2s;border:1px solid transparent;
+}
+.dl-card:hover{border-color:var(--p)}
+.dl-card .dl-icon{font-size:28px;flex-shrink:0}
+.dl-card .dl-info{flex:1}
+.dl-card .dl-info .dl-name{font-size:14px;font-weight:700}
+.dl-card .dl-info .dl-desc{font-size:12px;color:var(--tl);margin-top:2px}
+.dl-card .dl-arrow{font-size:18px;color:var(--tl);flex-shrink:0}
+
+.ft{text-align:center;padding:20px 12px;font-size:11px;color:var(--tl);margin-top:10px}
+
+/* ── No results ── */
+.no-result{display:none;text-align:center;padding:30px;color:var(--tl);font-size:14px}
+.no-result.show{display:block}
+
+@media(max-width:420px){
+  .hd h1{font-size:18px}
+  .card{padding:12px}
+  .cttl{font-size:14px}
+  .sec-ttl{font-size:15px}
+  .dl-card{padding:10px 12px}
+}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <h1>📕 鄂尔多斯职业学院<br>学生违纪处分办法</h1>
+  <p>鄂职政字〔2025〕8号 · 2025年4月30日印发</p>
+  <div class="badges">
+    <span>⚠️ 警告</span><span>⚡ 严重警告</span><span>📛 记过</span>
+    <span>🔍 留校察看</span><span>🚫 开除学籍</span>
+  </div>
+</div>
+
+<div class="w">
+
+<!-- ═══ SEARCH ═══ -->
+<div class="search-wrap">
+  <input type="text" id="searchInput" placeholder="🔍 搜索违纪行为、条款、关键词…" oninput="doSearch()">
+  <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕ 清除</button>
+  <span class="result-count" id="resultCount"></span>
+</div>
+
+<!-- ═══ TABS ═══ -->
+<div class="tabs">
+  <button class="tab on" data-p="p-all"><span class="ico">📑</span>全部总览</button>
+  <button class="tab" data-p="p-act"><span class="ico">📋</span>违纪行为</button>
+  <button class="tab" data-p="p-proc"><span class="ico">📝</span>处置流程</button>
+  <button class="tab" data-p="p-form"><span class="ico">📄</span>表单下载</button>
+</div>
+
+<!-- ═══ SEVERITY LEGEND ═══ -->
+<div class="legend">
+  <span class="sv sv-w">⚠ 警告</span>
+  <span class="sv sv-s">⚡ 严重警告</span>
+  <span class="sv sv-d">📛 记过</span>
+  <span class="sv sv-p">🔍 留校察看</span>
+  <span class="sv sv-e">🚫 开除学籍</span>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL: 全部总览
+     ══════════════════════════════════════ -->
+<div class="panel on" id="p-all">
+
+  <div class="no-result" id="noResultAll">未找到匹配内容，请尝试其他关键词。</div>
+
+  <!-- 处分种类与期限 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">处分种类与期限 <span class="n">5 种</span></div>
+    <table class="tbl">
+      <thead><tr><th>处分种类</th><th>处分期限</th><th>审批权限</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="sv sv-w">⚠ 警告</span></td>
+          <td>6 个月</td>
+          <td>所在系党政联席会议</td>
+        </tr>
+        <tr>
+          <td><span class="sv sv-s">⚡ 严重警告</span></td>
+          <td>8 个月</td>
+          <td>所在系党政联席会议</td>
+        </tr>
+        <tr>
+          <td><span class="sv sv-d">📛 记过</span></td>
+          <td>10 个月</td>
+          <td>所在系党政联席会议</td>
+        </tr>
+        <tr>
+          <td><span class="sv sv-p">🔍 留校察看</span></td>
+          <td>12 个月</td>
+          <td>系提出意见→党委学生工作部审核→分管院领导审批</td>
+        </tr>
+        <tr>
+          <td><span class="sv sv-e">🚫 开除学籍</span></td>
+          <td>—</td>
+          <td>系提出意见→教务处按学籍管理规定处理→报党委学生工作部备案</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alt alt-y">💡 毕业班学生察看期至毕业时止。休学/停学时间不计入处分期限。"以上""日内"均包含本数。</div>
+  </div>
+
+  <!-- 从轻从重 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">从轻与从重情节</div>
+    <div class="card">
+      <div class="cttl" style="margin-bottom:6px">🟢 可以从轻、减轻或免除处分（5种）</div>
+      <div class="info">① 情节特别轻微的</div>
+      <div class="info">② 主动承认错误，如实交代错误事实，对违纪错误认识深刻，并有明显悔改表现的</div>
+      <div class="info">③ 主动中止违纪行为或采取措施减轻违纪后果的</div>
+      <div class="info">④ 被他人胁迫或者诱骗实施违纪行为的</div>
+      <div class="info">⑤ 其他可以从轻、减轻或免除处分的情形</div>
+    </div>
+    <div class="card">
+      <div class="cttl" style="margin-bottom:6px">🔴 应从重处分（8种）</div>
+      <div class="info">① 认错态度差或拒不承认错误的</div>
+      <div class="info">② 违纪行为影响恶劣或者严重破坏学院声誉的</div>
+      <div class="info">③ 教唆、胁迫、诱骗他人违纪的</div>
+      <div class="info">④ 策划或者组织群体违纪的</div>
+      <div class="info">⑤ 违纪后恶意串通，故意提供虚假证据，妨碍调查取证的</div>
+      <div class="info">⑥ 对检举揭发人、证人或工作人员威胁恐吓，打击报复的</div>
+      <div class="info">⑦ 在校期间已受过处分的</div>
+      <div class="info">⑧ 纠集、伙同校外人员实施违法违纪行为的</div>
+    </div>
+  </div>
+
+  <!-- 开除学籍 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">直接开除学籍的10种情形 <span class="sv sv-e" style="font-size:11px">最严重</span></div>
+    <div class="card">
+      <div class="alt" style="background:var(--s-expel-bg);color:var(--s-expel-txt);border:1px solid #ccc;">
+        ① 违反宪法，反对四项基本原则、破坏安定团结、扰乱社会秩序的<br>
+        ② 触犯国家法律，构成刑事犯罪的<br>
+        ③ 受到治安管理处罚，情节严重、性质恶劣的<br>
+        ④ 代替他人或让他人代替自己参加考试、组织作弊、使用通讯设备或其他器材作弊、向他人出售考试试题或答案牟取利益，以及其他严重作弊或扰乱考试秩序行为的<br>
+        ⑤ 论文、毕业设计、公开发表的研究成果存在抄袭、篡改、伪造等学术不端行为，情节严重的；或者买卖毕业设计、由他人代做毕业设计或者为他人代做毕业设计<br>
+        ⑥ 侵害其他个人、组织合法权益，造成严重后果的<br>
+        ⑦ 组织、参加非法组织，从事非法活动，出版非法刊物者<br>
+        ⑧ 破坏民族团结，破坏国家宗教政策，在学院内进行邪教活动和非法传教活动者<br>
+        ⑨ 屡次违反学院规定受到纪律处分，经教育不改的<br>
+        ⑩ 吸毒、贩毒的
+      </div>
+    </div>
+  </div>
+
+  <!-- 违纪行为速览 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">各类违纪行为处分速览</div>
+    <div class="subnav">
+      <a href="#" onclick="switchTab('p-act')">查看全部违纪行为详情 →</a>
+    </div>
+    <table class="tbl">
+      <thead><tr><th>违纪类别</th><th>处分范围</th><th>条款</th></tr></thead>
+      <tbody>
+        <tr><td>违反法律法规受处罚</td><td><span class="sv sv-d">记过</span> ~ <span class="sv sv-e">开除学籍</span></td><td>第九条</td></tr>
+        <tr><td>扰乱学院秩序、妨害管理</td><td><span class="sv sv-w">警告</span> ~ <span class="sv sv-e">开除学籍</span></td><td>第十条</td></tr>
+        <tr><td>非法占有国家/集体/他人财物</td><td><span class="sv sv-w">警告</span> ~ <span class="sv sv-e">开除学籍</span></td><td>第十一条</td></tr>
+        <tr><td>损坏公私财物</td><td><span class="sv sv-w">警告</span> ~ <span class="sv sv-e">开除学籍</span></td><td>第十二条</td></tr>
+        <tr><td>打架斗殴</td><td><span class="sv sv-w">警告</span> ~ <span class="sv sv-e">开除学籍</span></td><td>第十三条</td></tr>
+        <tr><td>赌博</td><td><span class="sv sv-s">严重警告</span> ~ <span class="sv sv-e">开除学籍</span></td><td>第十四条</td></tr>
+        <tr><td>迟到（月累计5次/学期20次）</td><td><span class="sv sv-w">警告</span>起，不改可至<span class="sv sv-e">开除学籍</span></td><td>第十五条</td></tr>
+        <tr><td>违反课堂/考场纪律、作弊</td><td><span class="sv sv-s">严重警告</span> ~ <span class="sv sv-e">开除学籍</span></td><td>第十六条</td></tr>
+        <tr><td>旷课（13学时起）</td><td><span class="sv sv-w">警告</span> ~ <span class="sv sv-e">退学</span></td><td>第十七条</td></tr>
+        <tr><td>擅自离校失联</td><td><span class="sv sv-w">警告</span> ~ 按学籍管理规定处理</td><td>第十八条</td></tr>
+        <tr><td>违反实验实训/实习纪律</td><td><span class="sv sv-s">严重警告</span>以上</td><td>第十九条</td></tr>
+        <tr><td>未按当兵入伍请假流程</td><td><span class="sv sv-w">警告</span>以上</td><td>第二十条</td></tr>
+        <tr><td>私自伪造假条</td><td><span class="sv sv-w">警告</span>起，不改可至<span class="sv sv-e">开除学籍</span></td><td>第二十一条</td></tr>
+        <tr><td>违反宿舍管理规定</td><td><span class="sv sv-w">警告</span> ~ <span class="sv sv-e">开除学籍</span></td><td>第二十二条</td></tr>
+        <tr><td>违反禁烟规定</td><td><span class="sv sv-w">警告</span>起，引发火灾<span class="sv sv-e">开除学籍</span></td><td>第二十三条</td></tr>
+        <tr><td>擅自将个人车辆驶入校园</td><td><span class="sv sv-w">警告</span>以上</td><td>第二十四条</td></tr>
+        <tr><td>违反图书馆/网络信息管理规定</td><td><span class="sv sv-w">警告</span>以上</td><td>第二十五条</td></tr>
+        <tr><td>非法校园贷和网络刷单</td><td><span class="sv sv-d">记过</span>以上</td><td>第二十六条</td></tr>
+        <tr><td>缺乏个人信用（虚假信息等）</td><td><span class="sv sv-d">记过</span>以上</td><td>第二十七条</td></tr>
+        <tr><td>校园举止不文明</td><td><span class="sv sv-d">记过</span>以上</td><td>第二十八条</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 伴随处罚 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">受处分期间的伴随处罚</div>
+    <div class="card">
+      <div class="alt" style="background:var(--s-demerit-bg);color:var(--s-demerit-txt);">
+        ① 在处分期间<b>取消所有评奖评优及受助资格</b><br>
+        ② 取消处分期内<b>推优、入团入党资格</b><br>
+        ③ 担任学生干部的由相应单位给予<b>免职处理</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- 处分解除 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">处分解除规则</div>
+    <div class="card">
+      <div class="info"><b>自动解除：</b>警告、严重警告、记过处分考察期满后自动解除</div>
+      <div class="info" style="margin-top:6px"><b>申请解除：</b>留校察看处分到期后，本人申请→填写《解除留校察看处分申请审批表》→系党政联席会议研究→党委学生工作部审核→分管院领导审批→出具解除通知书</div>
+      <div class="info" style="margin-top:6px"><b>提前解除：</b>受处分期间不得短于规定期限的<b>1/2</b>。留校察看提前解除还须在处分期间参加国家级/省级/市级/院级学科竞赛、专业技能比赛或文体赛事并获奖，或取得明显进步和有突出表现</div>
+      <div class="info" style="margin-top:6px"><b>延期或不解除：</b>违纪情节严重、性质恶劣和屡教不改的学生可延期解除或不予以解除</div>
+      <div class="alt alt-g" style="margin-top:8px">💡 解除处分后，学生获得表彰、奖励及其他权益，不受原处分的影响。</div>
+    </div>
+  </div>
+
+  <!-- 常见问题 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">常见问题快查</div>
+    <div class="card">
+      <div class="info"><b>Q：打架会怎么处分？</b><br>A：视后果从<span class="sv sv-w">警告</span>到<span class="sv sv-e">开除学籍</span>不等。先动手或为首者加重；参与三次打架及以上<span class="sv sv-e">开除学籍</span>；持械打人或致重伤<span class="sv sv-p">留校察看</span>及以上。（第十三条）</div>
+      <div class="info" style="margin-top:8px"><b>Q：考试作弊怎么处分？</b><br>A：作弊或协同作弊<span class="sv sv-d">记过</span>。组织作弊、使用通讯设备作弊、买卖试题答案等<span class="sv sv-e">开除学籍</span>。（第八条、第十六条）</div>
+      <div class="info" style="margin-top:8px"><b>Q：旷课多少会被处分？</b><br>A：13学时→<span class="sv sv-w">警告</span>，26学时→<span class="sv sv-s">严重警告</span>，39学时→<span class="sv sv-d">记过</span>，52学时→<span class="sv sv-p">留校察看</span>，78学时或连续14天→<span class="sv sv-e">退学</span>。（第十七条）</div>
+      <div class="info" style="margin-top:8px"><b>Q：宿舍能用违规电器吗？</b><br>A：持有/存放→<span class="sv sv-w">警告</span>；私拉电线/使用→<span class="sv sv-s">严重警告</span>或<span class="sv sv-d">记过</span>；造成后果→<span class="sv sv-d">记过</span>以上；窃电→<span class="sv sv-p">留校察看</span>以上。（第二十二条）</div>
+      <div class="info" style="margin-top:8px"><b>Q：处分能提前解除吗？</b><br>A：可以，处分期不短于1/2。留校察看提前解除还需竞赛获奖或突出表现。（第三十八条）</div>
+      <div class="info" style="margin-top:8px"><b>Q：处分期间有什么影响？</b><br>A：取消评奖评优受助资格，取消推优入团入党，学生干部免职。解除后不受影响。（第三十条、第三十九条）</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL: 违纪行为
+     ══════════════════════════════════════ -->
+<div class="panel" id="p-act">
+
+  <div class="no-result" id="noResultAct">未找到匹配内容，请尝试其他关键词。</div>
+
+  <div class="sec searchable">
+    <div class="sec-ttl">第四章 违纪行为与处分</div>
+
+    <!-- 第八条 -->
+    <div class="card">
+      <div class="chd"><div class="cttl">第八条 开除学籍处分情形</div><div class="tags"><span class="sv sv-e">10种</span></div></div>
+      <div class="alt" style="background:var(--s-expel-bg);color:var(--s-expel-txt);border:1px solid #ccc;">
+        ① 违反宪法，反对四项基本原则、破坏安定团结、扰乱社会秩序的<br>
+        ② 触犯国家法律，构成刑事犯罪的<br>
+        ③ 受到治安管理处罚，情节严重、性质恶劣的<br>
+        ④ 代替他人或让他人代替自己参加考试、组织作弊、使用通讯设备或其他器材作弊、向他人出售考试试题或答案牟取利益，以及其他严重作弊或扰乱考试秩序行为的<br>
+        ⑤ 论文、毕业设计、公开发表的研究成果存在抄袭、篡改、伪造等学术不端行为，情节严重的；或者买卖毕业设计、由他人代做毕业设计或者为他人代做毕业设计<br>
+        ⑥ 侵害其他个人、组织合法权益，造成严重后果的<br>
+        ⑦ 组织、参加非法组织，从事非法活动，出版非法刊物者<br>
+        ⑧ 破坏民族团结，破坏国家宗教政策，在学院内进行邪教活动和非法传教活动者<br>
+        ⑨ 屡次违反学院规定受到纪律处分，经教育不改的<br>
+        ⑩ 吸毒、贩毒的
+      </div>
+    </div>
+
+    <!-- 第九条 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第九条 违反国家法律法规，受到司法部门处罚者</div>
+      <table class="tbl">
+        <thead><tr><th>情形</th><th>处分</th></tr></thead>
+        <tbody>
+          <tr><td>被处以治安警告、治安罚款</td><td><span class="sv sv-d">记过</span>以上</td></tr>
+          <tr><td>被处以行政拘留</td><td><span class="sv sv-p">留校察看</span>以上</td></tr>
+          <tr><td>被判处管制、拘役、徒刑</td><td><span class="sv sv-e">开除学籍</span></td></tr>
+          <tr><td>当事学生为未成年人</td><td>依据"未成年人保护法"酌情处理</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 第十条 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第十条 扰乱学院正常秩序、妨害学院管理行为</div>
+      <div class="col-head open" onclick="toggleCol(this)">📋 14种情形</div>
+      <div class="col-body show">
+        <table class="tbl">
+          <thead><tr><th>行为</th><th>处分</th></tr></thead>
+          <tbody>
+            <tr><td>（一）扰乱教学秩序、生活秩序以及公共场所管理秩序</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span>；严重后果的，<span class="sv sv-d">记过</span>、<span class="sv sv-p">留校察看</span>或<span class="sv sv-e">开除学籍</span></td></tr>
+            <tr><td>（二）组织、策划、参与非法传销等非法经营活动</td><td><span class="sv sv-s">严重警告</span>、<span class="sv sv-d">记过</span>或<span class="sv sv-p">留校察看</span></td></tr>
+            <tr><td>（三）酗酒并造成不良影响</td><td><span class="sv sv-w">警告</span></td></tr>
+            <tr><td>（三）酗酒滋事</td><td><span class="sv sv-s">严重警告</span>或<span class="sv sv-d">记过</span>；严重后果的，<span class="sv sv-p">留校察看</span>或<span class="sv sv-e">开除学籍</span></td></tr>
+            <tr><td>（四）私自隐匿、毁弃、私拆他人信件，非法浏览、删除他人邮件、侵犯他人隐私权</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span>；后果严重的，<span class="sv sv-d">记过</span>或<span class="sv sv-p">留校察看</span></td></tr>
+            <tr><td>（五）在公共场所、互联网侮辱、诽谤、恐吓他人，造谣、煽动、扰乱舆论</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span>；情节严重的，<span class="sv sv-p">留校察看</span>以上</td></tr>
+            <tr><td>（六）组织、策划、参与非法宗教、迷信活动或邪教组织活动</td><td><span class="sv sv-d">记过</span>或<span class="sv sv-p">留校察看</span>；情节恶劣或后果严重的，<span class="sv sv-e">开除学籍</span></td></tr>
+            <tr><td>（七）复制、传播淫秽物品或有害信息</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span>；造成恶劣影响的，<span class="sv sv-d">记过</span>或<span class="sv sv-p">留校察看</span></td></tr>
+            <tr><td>（八）性骚扰或在公共场所故意裸露身体，情节恶劣</td><td><span class="sv sv-d">记过</span>以上</td></tr>
+            <tr><td>（九）有霸凌行为</td><td><span class="sv sv-s">严重警告</span>以上；性质恶劣的，<span class="sv sv-e">开除学籍</span>并移送司法机关</td></tr>
+            <tr><td>（十）因学习成绩评定、评奖、处分、就业等原因寻衅报复</td><td><span class="sv sv-d">记过</span>以上</td></tr>
+            <tr><td>（十一）明知自身患有传染病却隐瞒病情、拒不接受治疗并造成不良后果</td><td><span class="sv sv-p">留校察看</span>以上</td></tr>
+            <tr><td>（十二）未经批准组织社团开展活动或发布宣传品，以合法社团名义开展非法活动等</td><td><span class="sv sv-s">严重警告</span>或<span class="sv sv-d">记过</span>；情节严重的，<span class="sv sv-p">留校察看</span>以上</td></tr>
+            <tr><td>（十三）不按规定流程反映问题或诉求、扰乱校园秩序</td><td><span class="sv sv-w">警告</span>以上</td></tr>
+            <tr><td>（十四）拒绝、阻碍国家工作人员或学院管理人员依法或依校规校纪执行公务</td><td><span class="sv sv-d">记过</span>以上</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 第十一条 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第十一条 非法占有国家、集体和他人财物</div>
+      <div class="alt alt-y" style="margin-bottom:8px">除追回赃款、赃物并赔偿损失外：</div>
+      <table class="tbl">
+        <thead><tr><th>行为</th><th>处分</th></tr></thead>
+        <tbody>
+          <tr><td>（一）拾物不还、非法占有遗失物或他人财物</td><td><span class="sv sv-w">警告</span>以上</td></tr>
+          <tr><td>（二）偷盗、哄抢公私财物</td><td><span class="sv sv-d">记过</span>以上</td></tr>
+          <tr><td>（三）诈骗、抢夺、敲诈勒索公私财物</td><td><span class="sv sv-p">留校察看</span>以上</td></tr>
+          <tr><td>（四）偷窃公章、保密文件、档案、实训工具等物品</td><td><span class="sv sv-p">留校察看</span>以上</td></tr>
+          <tr><td>（五）为作案者放哨，提供信息、作案工具或包庇、窝赃等</td><td>比照作案者处理</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 第十二条 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第十二条 损坏、破坏公私财物</div>
+      <div class="alt alt-y" style="margin-bottom:8px">除照价赔偿外：</div>
+      <table class="tbl">
+        <thead><tr><th>行为</th><th>处分</th></tr></thead>
+        <tbody>
+          <tr><td>（一）因过失损坏公私财物，未造成严重损失</td><td><span class="sv sv-w">警告</span></td></tr>
+          <tr><td>（二）故意损坏公私财物，未造成严重损失</td><td><span class="sv sv-s">严重警告</span></td></tr>
+          <tr><td>（三）故意或因过失损坏公私财物，造成严重损失</td><td><span class="sv sv-d">记过</span>以上</td></tr>
+          <tr><td>（四）阻塞消防通道、破坏消防器材、私自拉接电线造成财物损失或人员伤害</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span>；较重的<span class="sv sv-d">记过</span>或<span class="sv sv-p">留校察看</span>；严重的<span class="sv sv-e">开除学籍</span>（并赔偿）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 第十三条 打架 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第十三条 策划、参与打架或为打架提供凶器、作伪证</div>
+
+      <div class="col-head open" onclick="toggleCol(this)">👊 （一）肇事、打架者</div>
+      <div class="col-body show">
+        <table class="tbl">
+          <thead><tr><th>行为</th><th>处分</th></tr></thead>
+          <tbody>
+            <tr><td>语言挑逗或触及他人，未动手但造成打架后果</td><td><span class="sv sv-w">警告</span></td></tr>
+            <tr><td>动手打人未伤他人</td><td><span class="sv sv-s">严重警告</span></td></tr>
+            <tr><td>致他人轻伤</td><td><span class="sv sv-d">记过</span>及以上</td></tr>
+            <tr><td>致他人重伤或造成严重后果</td><td><span class="sv sv-p">留校察看</span>及以上</td></tr>
+            <tr><td>持械打人</td><td><span class="sv sv-p">留校察看</span>及以上</td></tr>
+            <tr><td>先动手和为首者</td><td>加重处理</td></tr>
+            <tr><td>参与三次打架及以上</td><td>不论情节轻重，<span class="sv sv-e">开除学籍</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 （二）策划、参与者</div>
+      <div class="col-body">
+        <table class="tbl">
+          <thead><tr><th>行为</th><th>处分</th></tr></thead>
+          <tbody>
+            <tr><td>策划他人打架并造成后果</td><td><span class="sv sv-d">记过</span>或<span class="sv sv-p">留校察看</span>；严重后果者<span class="sv sv-e">开除学籍</span></td></tr>
+            <tr><td>以"劝架"为名偏袒一方，促使殴打事态发展</td><td><span class="sv sv-s">严重警告</span>或<span class="sv sv-d">记过</span>；严重后果者<span class="sv sv-p">留校察看</span>或<span class="sv sv-e">开除学籍</span></td></tr>
+            <tr><td>策划组织打群架</td><td><span class="sv sv-e">开除学籍</span></td></tr>
+            <tr><td>参与打群架</td><td><span class="sv sv-d">记过</span>；情节严重者<span class="sv sv-p">留校察看</span>或<span class="sv sv-e">开除学籍</span></td></tr>
+            <tr><td>不找校方解决而擅自组织他人报复（含校外人员）</td><td>组织者<span class="sv sv-e">开除学籍</span>；参与者<span class="sv sv-d">记过</span>或<span class="sv sv-p">留校察看</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 （三）伪证、提供凶器者</div>
+      <div class="col-body">
+        <table class="tbl">
+          <thead><tr><th>行为</th><th>处分</th></tr></thead>
+          <tbody>
+            <tr><td>目击者故意为他人作伪证，使调查困难</td><td><span class="sv sv-s">严重警告</span>或<span class="sv sv-d">记过</span></td></tr>
+            <tr><td>提供凶器未造成严重后果</td><td><span class="sv sv-d">记过</span>或<span class="sv sv-p">留校察看</span></td></tr>
+            <tr><td>提供凶器造成严重后果</td><td><span class="sv sv-e">开除学籍</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-head" onclick="toggleCol(this)">📋 （四）其他</div>
+      <div class="col-body">
+        <div class="info">打架后以"私了"为名勒索财物者，<span class="sv sv-d">记过</span>以上处分。</div>
+      </div>
+    </div>
+
+    <!-- 第十四条 赌博 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第十四条 赌博</div>
+      <table class="tbl">
+        <thead><tr><th>行为</th><th>处分</th></tr></thead>
+        <tbody>
+          <tr><td>（一）参与线上线下任何形式的赌博</td><td><span class="sv sv-d">记过</span>以上</td></tr>
+          <tr><td>（二）屡次参加赌博</td><td><span class="sv sv-p">留校察看</span>以上</td></tr>
+          <tr><td>（三）组织线上线下赌博或为他人提供赌具、赌博场所</td><td><span class="sv sv-e">开除学籍</span></td></tr>
+          <tr><td>（四）在场围观或知情不报</td><td><span class="sv sv-s">严重警告</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 第十五条 迟到 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第十五条 迟到</div>
+      <div class="info">一个月内累计迟到<b>5次</b>或一学期累计迟到<b>20次</b>，给予<span class="sv sv-w">警告</span>处分。察看期间仍有的，加重直至<span class="sv sv-e">开除学籍</span>。</div>
+    </div>
+
+    <!-- 第十六条 课堂考场 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第十六条 违反课堂纪律、考场纪律和考试作弊</div>
+      <table class="tbl">
+        <thead><tr><th>行为</th><th>处分</th></tr></thead>
+        <tbody>
+          <tr><td>（一）违反课堂/考场纪律，扰乱秩序及其他违反考核纪律</td><td><span class="sv sv-s">严重警告</span>或<span class="sv sv-d">记过</span>；情节严重者<span class="sv sv-p">留校察看</span>以上</td></tr>
+          <tr><td>（二）拒不配合老师、监考人员管理、态度恶劣</td><td><span class="sv sv-p">留校察看</span></td></tr>
+          <tr><td>（二）谩骂、动手推搡、殴打老师、监考人员</td><td><span class="sv sv-e">开除学籍</span></td></tr>
+          <tr><td>（三）在考试中作弊、协同作弊</td><td><span class="sv sv-d">记过</span></td></tr>
+          <tr><td>（四）采用威胁、恐吓等手段向任课教师索取分数</td><td><span class="sv sv-p">留校察看</span>以上</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 第十七条 旷课 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第十七条 旷课（一学期累计）</div>
+      <table class="tbl">
+        <thead><tr><th>累计学时</th><th>处分</th></tr></thead>
+        <tbody>
+          <tr><td>（一）13学时以上</td><td><span class="sv sv-w">警告</span></td></tr>
+          <tr><td>（二）26学时以上</td><td><span class="sv sv-s">严重警告</span></td></tr>
+          <tr><td>（三）39学时以上</td><td><span class="sv sv-d">记过</span></td></tr>
+          <tr><td>（四）52学时以上</td><td><span class="sv sv-p">留校察看</span></td></tr>
+          <tr><td>（五）78学时以上或未经请假连续14日不参加教学活动</td><td>所在系召开党政联席会议，做出<span class="sv sv-e">退学处理，责令退学</span></td></tr>
+        </tbody>
+      </table>
+      <div class="alt alt-b" style="margin-top:6px">📅 实习、社会调查、军训、劳动等无故不参加或擅自离校者，每天按<b>6学时</b>计算，节假日除外。</div>
+    </div>
+
+    <!-- 第十八条 擅自离校 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第十八条 擅自离校失联</div>
+      <table class="tbl">
+        <thead><tr><th>失联时长</th><th>处分</th></tr></thead>
+        <tbody>
+          <tr><td>3天以内</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span></td></tr>
+          <tr><td>3天至1周</td><td><span class="sv sv-d">记过</span></td></tr>
+          <tr><td>1周以上，不到2周</td><td><span class="sv sv-p">留校察看</span></td></tr>
+          <tr><td>2周以上</td><td>按学院学籍管理有关规定处理</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 第十九条 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第十九条 违反实验实训操作规程和实习岗位工作纪律</div>
+      <div class="info">视情节给予<span class="sv sv-s">严重警告</span>以上处分。</div>
+    </div>
+
+    <!-- 第二十条 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第二十条 未按当兵入伍请假流程</div>
+      <div class="info">未按当兵入伍请假流程请假的，给予<span class="sv sv-w">警告</span>以上处分。在接到正式入伍通知书前，以即将入伍为借口逃避学习、实习任务的给予<span class="sv sv-d">记过</span>以上处分。</div>
+    </div>
+
+    <!-- 第二十一条 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第二十一条 私自伪造假条</div>
+      <div class="info">私自伪造假条（如病假条、事假条等），首次发现给予<span class="sv sv-w">警告</span>处分，察看期间仍有的，加重直至<span class="sv sv-e">开除学籍</span>。</div>
+    </div>
+
+    <!-- 第二十二条 宿舍 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第二十二条 违反学生宿舍管理规定</div>
+      <div class="col-head open" onclick="toggleCol(this)">📋 14种情形</div>
+      <div class="col-body show">
+        <table class="tbl">
+          <thead><tr><th>行为</th><th>处分</th></tr></thead>
+          <tbody>
+            <tr><td>（一）拒不执行寝室安排，擅自调换寝室，经教育不改</td><td><span class="sv sv-s">严重警告</span>以上</td></tr>
+            <tr><td>（二）在学生宿舍留宿外人，或将床位出租他人</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span>；严重后果的，<span class="sv sv-d">记过</span>以上</td></tr>
+            <tr><td>（三）在集体宿舍留宿异性或在异性集体宿舍留宿</td><td><span class="sv sv-d">记过</span>或<span class="sv sv-p">留校察看</span></td></tr>
+            <tr><td>（三）在集体宿舍进行卖淫、嫖娼等违法行为</td><td><span class="sv sv-e">开除学籍</span></td></tr>
+            <tr><td>（四）未经批准，在校外租房住宿</td><td><span class="sv sv-s">严重警告</span>或<span class="sv sv-d">记过</span></td></tr>
+            <tr><td>（五）在宿舍持有或存放违规电器，经教育不改</td><td><span class="sv sv-w">警告</span></td></tr>
+            <tr><td>（五）私拉电线、使用违规电器，经教育不改</td><td><span class="sv sv-s">严重警告</span>或<span class="sv sv-d">记过</span>；严重后果的，<span class="sv sv-d">记过</span>以上</td></tr>
+            <tr><td>（五）构成窃电</td><td><span class="sv sv-p">留校察看</span>以上</td></tr>
+            <tr><td>（六）在寝室或楼道内焚烧物品、使用明火，违反消防规定</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span>；引起火灾的，<span class="sv sv-d">记过</span>以上</td></tr>
+            <tr><td>（七）违反宿舍作息制度，严重影响他人，拒不听从劝阻</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span></td></tr>
+            <tr><td>（八）聚众起哄、高声喧哗、高空向外抛掷物品等</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span>；造成人身伤害的，<span class="sv sv-p">留校察看</span>以上</td></tr>
+            <tr><td>（九）携带或藏有违禁物品</td><td><span class="sv sv-s">严重警告</span>或<span class="sv sv-d">记过</span></td></tr>
+            <tr><td>（十）在校园内养动物，经教育不改</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span></td></tr>
+            <tr><td>（十一）未履行请假手续夜不归宿或经常晚归屡教不改，翻越窗户和校墙</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span>；情节严重的，<span class="sv sv-d">记过</span>或<span class="sv sv-p">留校察看</span></td></tr>
+            <tr><td>（十二）违反宿舍用电、用水、门禁管理等相关规定</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span></td></tr>
+            <tr><td>（十三）违反宿舍卫生制度，影响他人健康，拒不听从劝阻</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span></td></tr>
+            <tr><td>（十四）违反校园管理规定从事经营活动，不服从管理</td><td><span class="sv sv-w">警告</span>或<span class="sv sv-s">严重警告</span>；严重后果或受处罚的，<span class="sv sv-d">记过</span>以上</td></tr>
+            <tr><td>（十四）私自制造烟草制品并贩卖</td><td><span class="sv sv-p">留校察看</span>以上，并依法追究法律责任</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 第二十三条 禁烟 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第二十三条 违反学院禁烟规定</div>
+      <div class="info">在禁烟区域内吸烟屡教不改的，给予<span class="sv sv-w">警告</span>处分。察看期间仍有的，加重直至<span class="sv sv-e">开除学籍</span>。</div>
+      <div class="alt" style="background:var(--s-expel-bg);color:var(--s-expel-txt);border:1px solid #ccc;margin-top:6px;">因吸烟引发火灾、造成人员伤亡或重大财产损失等严重后果的，一律给予<span class="sv sv-e">开除学籍</span>处分，并依法追究法律责任。</div>
+    </div>
+
+    <!-- 第二十四条 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第二十四条 擅自将个人车辆驶入校园</div>
+      <div class="info">违反校园安全规定，擅自将个人车辆驶入校园的，视情节给予<span class="sv sv-w">警告</span>以上处分。</div>
+    </div>
+
+    <!-- 第二十五条 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第二十五条 违反图书馆管理和网络信息管理规定</div>
+      <table class="tbl">
+        <thead><tr><th>行为</th><th>处分</th></tr></thead>
+        <tbody>
+          <tr><td>（一）故意损坏、占有馆藏图书</td><td><span class="sv sv-w">警告</span>以上</td></tr>
+          <tr><td>（二）盗用、冒用他人互联网账号或校内信息服务账号，造成不良影响、严重后果或实际损失</td><td><span class="sv sv-s">严重警告</span>以上</td></tr>
+          <tr><td>（三）利用网络制作、复制、查阅和传播虚假信息、不良信息或非法信息，造成恶劣影响或严重后果</td><td><span class="sv sv-w">警告</span>以上</td></tr>
+          <tr><td>（四）其他违反互联网管理法律法规或校园网管理规定</td><td><span class="sv sv-w">警告</span>以上</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 第二十六条 校园贷 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第二十六条 非法校园贷和网络刷单</div>
+      <div class="info">禁止学生参与各类非法校园贷和网络刷单等。在校园内或互联网上组织、参与非法"校园贷"、网络刷单等相关活动和推销相关金融产品的，视情节轻重，给予<span class="sv sv-d">记过</span>以上处分。</div>
+    </div>
+
+    <!-- 第二十七条 个人信用 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第二十七条 缺乏个人信用</div>
+      <table class="tbl">
+        <thead><tr><th>行为</th><th>处分</th></tr></thead>
+        <tbody>
+          <tr><td>（一）在申请奖学金、助学金、国家贷款、勤工助学、处分解除等过程中，提供虚假信息或证明</td><td><span class="sv sv-d">记过</span></td></tr>
+          <tr><td>（二）私自涂改、伪造证件、证明或仿他人签字</td><td><span class="sv sv-d">记过</span></td></tr>
+          <tr><td>（三）擅自使用他人信息，给集体或他人造成损失</td><td>赔偿损失并承担相关责任，<span class="sv sv-d">记过</span>以上</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 第二十八条 不文明 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第二十八条 校园举止不文明行为</div>
+      <div class="info">学院倡导举止文明，不在公共场合吸烟，男女交往中禁止在教室、食堂、广场、实训车间等公共场所出现举止轻浮行为，违者经批评教育不改，或造成恶劣影响者，给予<span class="sv sv-d">记过</span>以上处分。</div>
+    </div>
+
+    <!-- 第二十九条 -->
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px">第二十九条 未列举的违纪行为</div>
+      <div class="info">本办法未列举的违纪行为，确需给予处分的，可参照本办法相近条款，酌情予以处分。</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL: 处置流程
+     ══════════════════════════════════════ -->
+<div class="panel" id="p-proc">
+
+  <div class="no-result" id="noResultProc">未找到匹配内容，请尝试其他关键词。</div>
+
+  <!-- 伴随处罚 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">受处分期间的伴随处罚</div>
+    <div class="card">
+      <div class="alt" style="background:var(--s-demerit-bg);color:var(--s-demerit-txt);">
+        ① 在处分期间<b>取消所有评奖评优及受助资格</b><br>
+        ② 取消处分期内<b>推优、入团入党资格</b><br>
+        ③ 担任学生干部的由相应单位给予<b>免职处理</b>
+      </div>
+      <div class="info" style="margin-top:8px"><b>出处：</b>第三十条</div>
+    </div>
+  </div>
+
+  <!-- 处分前告知 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">处分前权利</div>
+    <div class="card">
+      <div class="info">对学生违纪行为作出处分之前，由所在系告知学生作出处分的事实、理由及依据，<b>允许学生陈述和申辩</b>。（第三十一条）</div>
+    </div>
+  </div>
+
+  <!-- 处分材料 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">处分所需材料</div>
+    <div class="card">
+      <div class="info">① 违纪学生对违纪行为所做的<b>书面检查</b></div>
+      <div class="info">② 违纪学生所在系意见，负责人签字盖章的<b>《鄂尔多斯职业学院学生违纪处分登记表》</b></div>
+      <div class="info" style="margin-top:4px"><b>出处：</b>第三十二条</div>
+    </div>
+  </div>
+
+  <!-- 审批权限与流程 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">处分审批权限与流程</div>
+
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px"><span class="sv sv-w">警告</span> / <span class="sv sv-s">严重警告</span> / <span class="sv sv-d">记过</span></div>
+      <div class="steps">
+        <div class="step"><div class="sn">审批</div><div class="st">所在系党政联席会议</div>研究讨论，作出处分决定</div>
+        <div class="step"><div class="sn">文书</div><div class="st">填写处分登记表、出具处分通知书</div></div>
+        <div class="step"><div class="sn">系统</div><div class="st">上传至评奖评优评先评助系统</div>并报党委学生工作部<b>备案</b></div>
+      </div>
+      <div class="alt alt-b" style="margin-top:6px">处分通知书由所在系出具，必须盖章方可生效。</div>
+    </div>
+
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px"><span class="sv sv-p">留校察看</span></div>
+      <div class="steps">
+        <div class="step"><div class="sn">第1步</div><div class="st">所在系党政联席会议</div>研究讨论，提出处理意见，填写处分登记表</div>
+        <div class="step"><div class="sn">第2步</div><div class="st">党委学生工作部审核</div></div>
+        <div class="step"><div class="sn">第3步</div><div class="st">分管院领导审批</div></div>
+        <div class="step"><div class="sn">第4步</div><div class="st">党委学生工作部出具处分通知书</div>并上传至系统</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="cttl" style="margin-bottom:8px"><span class="sv sv-e">开除学籍</span></div>
+      <div class="steps">
+        <div class="step"><div class="sn">第1步</div><div class="st">所在系党政联席会议</div>审慎研讨并提出处理意见</div>
+        <div class="step"><div class="sn">第2步</div><div class="st">教务处</div>按照《鄂尔多斯职业学院学籍管理规定》处理</div>
+        <div class="step"><div class="sn">第3步</div><div class="st">报送党委学生工作部备案</div></div>
+      </div>
+    </div>
+
+    <div class="alt alt-y" style="margin-top:8px">💡 对违纪学生应作处理而所在系未及时处理的，<b>党委学生工作部可直接进行处理</b>，并上报学院追究相关责任。（第三十四条）</div>
+  </div>
+
+  <!-- 共同违纪 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">共同违纪处理原则</div>
+    <div class="card">
+      <div class="info">两人及以上共同违纪的，对<b>为首者，从重处分</b>；对其他成员，按照其在共同违纪中所起的作用和应负的责任，分别给予处分。（第三十五条）</div>
+    </div>
+  </div>
+
+  <!-- 考察期教育 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">考察期内的教育管理</div>
+    <div class="card">
+      <div class="info">• <span class="sv sv-p">留校察看</span>处分学生由<b>本系领导包联教育</b></div>
+      <div class="info">• <span class="sv sv-w">警告</span>/<span class="sv sv-s">严重警告</span>/<span class="sv sv-d">记过</span>处分学生由<b>班主任辅导员包联教育</b></div>
+      <div class="info">• 定期开展谈心谈话等思想教育，直至处分撤销为止</div>
+      <div class="info" style="margin-top:4px"><b>出处：</b>第三十六条</div>
+    </div>
+  </div>
+
+  <!-- 处分解除条件 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">解除处分的条件</div>
+    <div class="card">
+      <div class="info">① 对所犯错误的性质、后果及危害性有深刻认识，并有改正错误的实际表现</div>
+      <div class="info">② 努力学习，学习态度端正，遵守教学秩序</div>
+      <div class="info">③ 处分期内无违纪违规违法行为，各方面表现良好</div>
+      <div class="info">④ 参加院、系、班级组织的志愿者、公益性服务活动，主动服务社会</div>
+      <div class="info" style="margin-top:6px"><b>⑤ 提前解除：</b>受处分期间不得短于规定期限的<b>1/2</b>。留校察看提前解除还须在处分期间参加国家级/省级/市级/院级学科竞赛、专业技能比赛或文体赛事并获奖，或取得明显进步和有突出表现，经所在系和党委学生工作部共同审核认定。</div>
+      <div class="info" style="margin-top:4px"><b>出处：</b>第三十八条</div>
+    </div>
+  </div>
+
+  <!-- 处分解除程序 -->
+  <div class="sec searchable">
+    <div class="sec-ttl">解除处分的程序</div>
+    <div class="card">
+      <div class="info"><b>（一）自动解除：</b>警告、严重警告、记过处分考察期满后<b>自动解除</b></div>
+      <div class="info" style="margin-top:6px"><b>（二）申请解除（留校察看）：</b></div>
+      <div class="steps" style="margin-top:6px">
+        <div class="step"><div class="sn">第1步</div><div class="st">学生本人提出申请</div>（毕业班学生可在毕业前一个月提出），填写《解除留校察看处分申请审批表》</div>
+        <div class="step"><div class="sn">第2步</div><div class="st">所在系党政联席会议</div>研究后提出处分解除意见</div>
+        <div class="step"><div class="sn">第3步</div><div class="st">党委学生工作部审核</div></div>
+        <div class="step"><div class="sn">第4步</div><div class="st">分管院领导审批</div></div>
+        <div class="step"><div class="sn">第5步</div><div class="st">党委学生工作部出具解除处分通知书</div>→ 解除处分</div>
+      </div>
+      <div class="info" style="margin-top:8px"><b>（三）延期或不解除：</b>违纪情节严重、性质恶劣和屡教不改的学生可延期解除或不予以解除</div>
+      <div class="info" style="margin-top:6px"><b>（四）解除后：</b>学生获得表彰、奖励及其他权益，不受原处分的影响</div>
+      <div class="info" style="margin-top:6px"><b>（五）休学/停学：</b>休学或停学的时间不计入处分期限</div>
+      <div class="info" style="margin-top:4px"><b>出处：</b>第三十九条</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL: 表单下载
+     ══════════════════════════════════════ -->
+<div class="panel" id="p-form">
+
+  <div class="sec">
+    <div class="sec-ttl">表单下载 <span class="n">4 份</span></div>
+    <div class="alt alt-b" style="margin-bottom:10px">以下为鄂职政字〔2025〕8号文件附件原文（第19-22页），含全部4份表单。</div>
+
+    <a class="dl-card" href="forms/附件表单-处分登记表及通知书模板.pdf" target="_blank">
+      <div class="dl-icon">📋</div>
+      <div class="dl-info">
+        <div class="dl-name">附件1-4：处分登记表及通知书模板（PDF原文）</div>
+        <div class="dl-desc">含：违纪处分登记表 · 处分通知书模板 · 解除留校察看审批表 · 解除处分通知书模板</div>
+      </div>
+      <div class="dl-arrow">↓</div>
+    </a>
+
+    <div class="alt alt-y" style="margin-top:12px">💡 <b>说明：</b>以上PDF直接从原文件提取，包含4份附件的完整内容。所有表单须盖章方可生效。</div>
+  </div>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="ft">
+  <p>鄂尔多斯职业学院 · 党委学生工作部</p>
+  <p style="margin-top:2px">数据来源：鄂职政字〔2025〕8号《鄂尔多斯职业学院学生违纪处分办法（修订）》</p>
+  <p style="margin-top:2px">2025年5月6日印发 · 原鄂职政字〔2023〕8号同时废止</p>
+</div>
+
+</div>
+
+<script>
+// ═══ TAB SWITCHING ═══
+document.querySelectorAll('.tabs .tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    var currentPanel = document.querySelector('.panel.on');
+    document.querySelectorAll('.tabs .tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('on')});
+    this.classList.add('on');
+    var newPanel = document.getElementById(this.dataset.p);
+    newPanel.classList.add('on');
+    // Re-run search if there's text in the input
+    var q = document.getElementById('searchInput').value.trim();
+    if(q) doSearch();
+  });
+});
+
+function switchTab(pid) {
+  document.querySelectorAll('.tabs .tab').forEach(function(x){x.classList.remove('on')});
+  document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('on')});
+  var tab = document.querySelector('.tab[data-p="'+pid+'"]');
+  if(tab) tab.classList.add('on');
+  var panel = document.getElementById(pid);
+  if(panel) panel.classList.add('on');
+  document.querySelector('.tabs').scrollIntoView({behavior:'smooth'});
+}
+
+// ═══ COLLAPSE TOGGLE ═══
+function toggleCol(head) {
+  head.classList.toggle('open');
+  head.nextElementSibling.classList.toggle('show');
+}
+
+// ═══ SEARCH ═══
+function doSearch() {
+  var q = document.getElementById('searchInput').value.trim().toLowerCase();
+  var clearBtn = document.getElementById('clearBtn');
+  var resultCount = document.getElementById('resultCount');
+
+  if (q === '') {
+    clearBtn.classList.remove('show');
+    resultCount.classList.remove('show');
+    // Show everything
+    document.querySelectorAll('.panel .card.hidden, .panel .sec.hidden, .panel .tbl tr.hidden').forEach(function(el){el.classList.remove('hidden')});
+    document.querySelectorAll('.panel .no-result').forEach(function(el){el.classList.remove('show')});
+    // Remove highlights
+    document.querySelectorAll('.search-highlight').forEach(function(el){
+      el.replaceWith(el.textContent);
+    });
+    return;
+  }
+
+  clearBtn.classList.add('show');
+  var totalVisible = 0;
+
+  // Get active panel
+  var activePanel = document.querySelector('.panel.on');
+  if (!activePanel) return;
+
+  // First pass: remove old highlights
+  document.querySelectorAll('.search-highlight').forEach(function(el){
+    el.replaceWith(el.textContent);
+  });
+
+  // Search within cards, sections, and table rows in the active panel
+  var cards = activePanel.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var text = card.textContent.toLowerCase();
+    if (text.indexOf(q) !== -1) {
+      card.classList.remove('hidden');
+      totalVisible++;
+      highlightInElement(card, q);
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+
+  // Also search table rows
+  var rows = activePanel.querySelectorAll('.tbl tbody tr');
+  rows.forEach(function(row){
+    var text = row.textContent.toLowerCase();
+    if (text.indexOf(q) !== -1) {
+      row.classList.remove('hidden');
+      totalVisible++;
+      highlightInElement(row, q);
+    } else {
+      row.classList.add('hidden');
+    }
+  });
+
+  // Search section titles
+  var secs = activePanel.querySelectorAll('.sec.searchable');
+  secs.forEach(function(sec){
+    var text = sec.textContent.toLowerCase();
+    if (text.indexOf(q) !== -1) {
+      sec.classList.remove('hidden');
+    } else {
+      // Check if any card inside is still visible
+      var hasVisibleCard = sec.querySelectorAll('.card:not(.hidden)').length > 0;
+      if (!hasVisibleCard) {
+        sec.classList.add('hidden');
+      }
+    }
+  });
+
+  // Show/hide no-result message
+  var noResult = activePanel.querySelector('.no-result');
+  if (noResult) {
+    if (totalVisible === 0) {
+      noResult.classList.add('show');
+    } else {
+      noResult.classList.remove('show');
+    }
+  }
+
+  resultCount.classList.add('show');
+  resultCount.textContent = '找到 ' + totalVisible + ' 条';
+}
+
+function highlightInElement(el, q) {
+  // Only highlight text nodes, not inside sv badges
+  var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+  var nodes = [];
+  while(walker.nextNode()) {
+    if (walker.currentNode.parentNode.tagName !== 'SCRIPT' &&
+        walker.currentNode.parentNode.tagName !== 'STYLE' &&
+        !walker.currentNode.parentNode.classList.contains('sv')) {
+      nodes.push(walker.currentNode);
+    }
+  }
+  nodes.forEach(function(node){
+    var text = node.textContent;
+    var lower = text.toLowerCase();
+    var idx = lower.indexOf(q.toLowerCase());
+    if (idx !== -1) {
+      var span = document.createElement('span');
+      span.innerHTML = text.substring(0, idx) +
+        '<span class="search-highlight">' + text.substring(idx, idx + q.length) + '</span>' +
+        text.substring(idx + q.length);
+      node.replaceWith(span);
+    }
+  });
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('clearBtn').classList.remove('show');
+  document.getElementById('resultCount').classList.remove('show');
+  document.querySelectorAll('.panel .card.hidden, .panel .sec.hidden, .panel .tbl tr.hidden').forEach(function(el){el.classList.remove('hidden')});
+  document.querySelectorAll('.panel .no-result').forEach(function(el){el.classList.remove('show')});
+  document.querySelectorAll('.search-highlight').forEach(function(el){
+    el.replaceWith(el.textContent);
+  });
+  document.getElementById('searchInput').focus();
+}
+
+// ═══ KEYBOARD SHORTCUT ═══
+document.addEventListener('keydown', function(e){
+  // Ctrl+F or / to focus search
+  if ((e.ctrlKey && e.key === 'f') || (e.key === '/' && !e.ctrlKey && !e.metaKey && document.activeElement === document.body)) {
+    e.preventDefault();
+    document.getElementById('searchInput').focus();
+  }
+  // Escape to clear
+  if (e.key === 'Escape' && document.activeElement === document.getElementById('searchInput')) {
+    clearSearch();
+  }
+});
+</script>
+
+</body>
+</html>
